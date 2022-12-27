@@ -62,7 +62,7 @@ function greeting() {
 // void return type
 // - The type void can be used to indicate a function doesn't return  any value;
 function greet() {
-    console.log('this function doesnt return anything.');
+    console.log("this function doesnt return anything.");
 }
 // parameters
 // - function parameters are typed with a similar syntax  as variable declerations
@@ -70,3 +70,44 @@ function addition(a, b) {
     return a + b;
 }
 console.log(addition(202, 555));
+//  optional function parameters
+function subtraction(a, b, c) {
+    return a - b - (c || 0);
+}
+subtraction(5755, 677);
+// optional parameters
+function concat(fn, ln) {
+    return ln ? fn + ln : fn;
+}
+console.log(concat("Tikaram"));
+// optional properties
+// Notice that always write required properties first and then option properties later
+var optionalProperties;
+optionalProperties = {
+    first: "first",
+    second: "second",
+    third: 122,
+    forth: false
+};
+console.log(optionalProperties);
+// Typescript Union types
+// - it is used when a value can be more than a single type.
+// - such as when a  property  would be string or number.
+var nonsence;
+nonsence = 'ss';
+nonsence = 2727;
+var s1;
+s1 = {
+    name: "prakash",
+    rollNo: 23,
+    id: 111,
+    isMale: true
+};
+var s2;
+s2 = {
+    nationality: "Nepali",
+    country: "string",
+    countryCode: 977,
+    name: "Paras"
+};
+console.log(s2);
