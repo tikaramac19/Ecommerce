@@ -87,3 +87,49 @@ console.log(nameList);
 const nochangeList: readonly string[] = ["Jack"];
     // nochangeList.push("something") i.e it wont works coz push() method doesnt exist in type readonly
 
+const user ={
+  names : "hello",
+  age : 33
+}
+// user.location
+
+let random = Math.random() < 0.5 ? "a" : "b";
+
+console.log(random);
+
+// typescript functions
+function greeting(){
+    return 69;
+}
+// console.log(typeof(greeting));
+// the : number , here specifies this function return number
+
+// void return type
+// - The type void can be used to indicate a function doesn't return  any value;
+
+function greet() : void{
+  console.log('this function doesnt return anything.');
+}
+
+// parameters
+// - function parameters are typed with a similar syntax  as variable declerations
+
+function addition(a:number, b:number) : number{
+  return a + b 
+}
+console.log(addition(202, 555));
+ //  optional function parameters
+
+ function subtraction(a:number, b:number , c?:number): number{
+
+  return a - b - (c || 0)
+
+ }
+ subtraction(5755, 677);
+
+
+
+
+
+
+
