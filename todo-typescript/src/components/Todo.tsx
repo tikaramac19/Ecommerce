@@ -8,10 +8,15 @@ const Todo = () => {
   const [hasDisabled, setHasDisabled] = useState<boolean>(false);
   function handleTodoList() {
     let tempTodoList: string[] = todoList ? [...todoList] : [];
-    tempTodoList.push(enteredText);
-    setTodoLists(tempTodoList);
+
+    if (enteredText.length > 0) {
+      tempTodoList.push(enteredText);
+      setTodoLists(tempTodoList);
+      // setHasDisabled(false);
+    }
+
     // if (enteredText.length < 0) {
-    //   setHasDisabled(false);
+    //   setHasDisabled(true);
     // }
   }
   // console.log(enteredText.length);
