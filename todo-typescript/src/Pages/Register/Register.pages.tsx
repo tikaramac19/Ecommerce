@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import MyBtn from "../../common/Practice/Btn.common";
+import ExampleTypes from "../../common/Types/Example.common";
 import "./_Register.scss";
 
 interface IpersonInfo {
@@ -78,6 +79,9 @@ const Register: React.FC = () => {
         />
         <button onClick={sendMessage}>Send</button>
       </div>
+
+      <ExampleTypes />
+
     </>
   );
 };
