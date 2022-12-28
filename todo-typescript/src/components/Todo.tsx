@@ -14,14 +14,11 @@ const Todo = () => {
       setTodoLists(tempTodoList);
       // setHasDisabled(false);
     }
-
-    // if (enteredText.length < 0) {
-    //   setHasDisabled(true);
-    // }
   }
   // console.log(enteredText.length);
   return (
-    <div className="todo-container">
+    <Container>
+      <Title>Todo App Typescript</Title>
       <div className="input-field">
         <InputField
           type="text"
@@ -38,11 +35,15 @@ const Todo = () => {
           Total Todos : {todoList?.length}
         </TodoCount>
       </div>
-    </div>
+    </Container>
   );
 };
 
 export default Todo;
+
+const Container = styled.div`
+  text-align: center;
+`;
 
 const InputField = styled.input`
   height: 40px;
@@ -58,4 +59,9 @@ const InputField = styled.input`
 const TodoCount = styled.div`
   font-size: 1.1rem;
   color: #fff;
+`;
+const Title = styled.h1`
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 0.4rem;
 `;
