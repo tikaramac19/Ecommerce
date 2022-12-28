@@ -11,7 +11,7 @@ const Facebook: React.FC = () => {
   return (
     <>
       <div className="fb-container">
-        <SocialLogin updateName={updateName} />
+        <SocialLogin updateName={updateName} name = {name}/>
         <div>{name}</div>
         <OtpLogin updateName={updateName} />
       </div>
