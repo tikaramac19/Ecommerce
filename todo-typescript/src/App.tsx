@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Todo from "./components/Todo";
 import Login from "./Pages/Login/Login.pages";
 import Register from "./Pages/Register/Register.pages";
+import MemoEx from "./hooks/MemoEx";
 function App() {
   return (
     <Wrapper>
@@ -13,6 +14,7 @@ function App() {
           <Route path="/todo" element={<Todo />} />
           <Route path="/login" element={<Login message="Login Page" />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/memo" element={<MemoEx />} />
         </Routes>
       </BrowserRouter>
     </Wrapper>
