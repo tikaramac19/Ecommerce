@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart,deleteCart } from "../../store/productSlice/productSlice";
+import { addToCart, deleteCart } from "../../store/productSlice/productSlice";
 import CartItem from "../../components/cart.component/cartItem";
 import { BiArrowBack } from "react-icons/bi";
 import "./_cart.scss";
@@ -32,9 +32,11 @@ const Cart = () => {
       }
     });
 
-    console.log(filterDelete);
+    // console.log(filterDelete);
     dispatch(deleteCart(filterDelete));
   };
+
+
 
   return (
     <>
