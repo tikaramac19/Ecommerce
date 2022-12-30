@@ -1,8 +1,10 @@
-import React, {memo} from "react";
+import React, { memo } from "react";
 import "./_productItem.scss";
 import { FcRating } from "react-icons/fc";
 import Button from "../../common/Button/Button.common";
 import { AiFillEye } from "react-icons/ai";
+import { BsFillCartFill } from "react-icons/bs";
+
 interface itemInterface {
   id: number;
   title: string;
@@ -17,11 +19,14 @@ interface itemInterface {
 
 interface productItemProps {
   item: itemInterface;
+  id: number;
+  addToCartLogic: (tempId: number) => any;
 }
 
 const ProductItem = (props: productItemProps) => {
-  const { item } = props;
-  console.log(props);
+  const { item, id, addToCartLogic } = props;
+  // console.log(props);
+
   return (
     <>
       <div className="item-container">
@@ -36,15 +41,17 @@ const ProductItem = (props: productItemProps) => {
           <span>
             <FcRating className="ratingIcon" />
           </span>
-          <span>  {item.rating}</span>
+          <span> {item.rating}</span>
         </div>
         <div className="btn-section">
           <button>
             Details
-            <AiFillEye className=""/>
+            <AiFillEye className="" />
           </button>
-          <Button title="Add to cart"/>
-          {/* <button></button> */}
+          {/* <Button title="Add to cart"/> */}
+          <button onClick={() => addToCartLogic(id)}>
+            Add to cart <BsFillCartFill />
+          </button>
         </div>
       </div>
     </>
