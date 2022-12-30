@@ -1,7 +1,7 @@
 import React,{memo} from "react";
 import { useSelector } from "react-redux";
 import "./_productsList.scss";
-import { ProductItem } from "../../routes/Router";
+import ProductItem from "./productItem";
 interface itemInterface{
     id: number,
     title : string,

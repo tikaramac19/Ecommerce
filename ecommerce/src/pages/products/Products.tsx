@@ -3,7 +3,7 @@ import { addProducts } from "../../store/productSlice/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import "./_products.scss";
-import { ProductsList } from "../../routes/Router";
+import ProductsList from "../../components/products.component/productsList";
 const Products = () => {
   const { pageTitle } = useSelector((state: any) => state.products);
   const dispatch = useDispatch();
@@ -14,6 +14,7 @@ const Products = () => {
   };
   // console.log(products);
   useEffect(() => {
+    // console.log("kera")
     fetchData();
   }, []);
 
