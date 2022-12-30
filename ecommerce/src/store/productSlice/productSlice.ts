@@ -16,6 +16,8 @@ interface intialStateType {
   favroute: itemInterface[];
   cartItems: itemInterface[];
   deleteItem: itemInterface[];
+  favroutes: itemInterface[];
+  totalPrice: number;
   pageTitle: string;
 }
 
@@ -24,6 +26,8 @@ const initialState = {
   favroute: [],
   cartItems: [],
   deleteItem: [],
+  favroutes: [],
+  totalPrice: 0,
   pageTitle: "Products",
 } as intialStateType;
 
@@ -38,6 +42,8 @@ const productSlice = createSlice({
       let tempId = actions.payload;
     },
     addToCart: (state: any, actions) => {
+      // console.log(state.products, "kera");
+
       // let getItem = actions.payload;
       // console.log(getItem);
       let tempCarts = [...state.cartItems];
