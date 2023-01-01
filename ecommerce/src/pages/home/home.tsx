@@ -1,10 +1,11 @@
 import React from "react";
-const Home = () => {
+import Layout from "../../components/layout/hoc/layout";
+const HomePage = () => {
   return (
     <>
-      
+      <h1>Home Page</h1>
     </>
   );
 };
 
-export default Home;
+export const Home = Layout(HomePage);

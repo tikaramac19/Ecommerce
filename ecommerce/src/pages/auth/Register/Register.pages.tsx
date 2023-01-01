@@ -1,6 +1,7 @@
 import React from "react";
+import Layout from "../../../components/layout/hoc/layout";
 import "./_register.scss";
-const Register = () => {
+const RegisterPage = () => {
   return (
     <>
       <h1>Hello from Registration Page</h1>
@@ -8,4 +9,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export const Register = Layout(RegisterPage);

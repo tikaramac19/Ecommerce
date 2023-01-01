@@ -1,10 +1,10 @@
 import React from "react";
 import "./_navbar.scss";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { stat } from "fs";
 const Navbar = () => {
-  const {cartItems} = useSelector((state:any) => state.products);
+  const { cartItems } = useSelector((state: any) => state.products);
   // console.log(cartItems.length)
   return (
     <>

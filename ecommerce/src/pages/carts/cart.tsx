@@ -5,6 +5,7 @@ import CartItem from "../../components/cart.component/cartItem";
 import { BiArrowBack } from "react-icons/bi";
 import "./_cart.scss";
 import { Link } from "react-router-dom";
+import Layout from "../../components/layout/hoc/layout";
 interface itemInterface {
   id: number;
   title: string;
@@ -17,7 +18,7 @@ interface itemInterface {
   thumbnail: string;
 }
 
-const Cart = () => {
+const CartPage = () => {
   const { cartItems } = useSelector((state: any) => state.products);
   // console.log(cartItems);
   const dispatch = useDispatch();
@@ -35,8 +36,6 @@ const Cart = () => {
     // console.log(filterDelete);
     dispatch(deleteCart(filterDelete));
   };
-
-
 
   return (
     <>
@@ -64,4 +63,4 @@ const Cart = () => {
     </>
   );
 };
-export default Cart;
+export const Cart = Layout(CartPage);

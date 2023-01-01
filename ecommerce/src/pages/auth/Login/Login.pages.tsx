@@ -1,6 +1,7 @@
 import React from "react";
+import Layout from "../../../components/layout/hoc/layout";
 import "./_login.scss";
-const Login = () => {
+const LoginPage = () => {
   return (
     <>
       <h1>Hello from Login Page</h1>
@@ -8,4 +9,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export const Login =  Layout(LoginPage);

@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import "./_products.scss";
 import ProductsList from "../../components/products.component/productsList";
-const Products = () => {
+import Layout from "../../components/layout/hoc/layout";
+const ProductsPage = () => {
   const { pageTitle } = useSelector((state: any) => state.products);
   const dispatch = useDispatch();
   const fetchData = async () => {
@@ -31,4 +32,4 @@ const Products = () => {
     </>
   );
 };
-export default Products;
+export const Products = Layout(ProductsPage);
