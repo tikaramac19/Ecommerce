@@ -1,10 +1,12 @@
-import React from 'react';
-import './App.css';
-import Facebook from './components/Facebook';
+import React from "react";
+import "./App.css";
+import Facebook from "./components/Facebook";
+import GuestList from "./state/GuestList";
 function App() {
   return (
     <div className="App">
-        <Facebook />
+      <Facebook />
+      <GuestList />
     </div>
   );
 }
