@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import MyBtn from "../../common/Practice/Btn.common";
 import ExampleTypes from "../../common/Types/Example.common";
 import "./_Register.scss";
-
+import BackwardCounter from "../../hooks/customHooks/backward-counter";
+import { useCounter } from "../../hooks/customHooks/use_Counter";
 interface IpersonInfo {
   name: string;
   address: string;
@@ -12,14 +13,18 @@ interface IpersonInfo {
 
 const Register: React.FC = () => {
   const [enteredText, setEnteredText] = useState<string | undefined>();
-  const [to, setTo] = useState<string | undefined>('Ural');
+  const [to, setTo] = useState<string | undefined>("Ural");
 
-  const [person, setPerson] = useState<IpersonInfo>({
-    name: "Prakash",
-    address: "surkhet",
-    phone: 9833363,
-    age: 20,
-  });
+  // custom counter hooks
+
+  const counter = useCounter(true);
+
+  // const [person, setPerson] = useState<IpersonInfo>({
+  //   name: "Prakash",
+  //   address: "surkhet",
+  //   phone: 9833363,
+  //   age: 20,
+  // });
 
   let arr: string[] = ["a", "b", "c", "d"];
   // const fullname = (values: string | number) => {
@@ -36,15 +41,15 @@ const Register: React.FC = () => {
     setEnteredText(e.target.value);
   };
 
-  const sendMessage = () => {
-    setTimeout(() => {
-      alert(`you say ${enteredText} to ${to}`);
-    }, 5000);
-  };
+  // const sendMessage = () => {
+  //   setTimeout(() => {
+  //     alert(`you say ${enteredText} to ${to}`);
+  //   }, 5000);
+  // };
 
   return (
     <>
-      <div>
+      {/* <div>
         <h2>person Info</h2>
         <h5>Name : {person.name}</h5>
         <h5>address : {person.address}</h5>
@@ -53,8 +58,8 @@ const Register: React.FC = () => {
       </div>
       <MyBtn title="Change person" setPerson={setPerson} />
 
-      {/* <div>
-        {arr.map((item: string, id: number) => {
+      {/* <div> */}
+      {/* {arr.map((item: string, id: number) => {
           return (
             <>
               <h1>{item.toUpperCase()}</h1>
@@ -63,7 +68,7 @@ const Register: React.FC = () => {
         })}
       </div> */}
 
-      <div className="chat-container">
+      {/* <div className="chat-container">
         <div>
           <h2>Chat</h2>
           <span>To:</span>
@@ -78,10 +83,12 @@ const Register: React.FC = () => {
           onChange={(e) => handleChange(e)}
         />
         <button onClick={sendMessage}>Send</button>
-      </div>
+      </div> */}
 
       <ExampleTypes />
 
+      <h1>forward counter: {counter}</h1>
+      <BackwardCounter />
     </>
   );
 };

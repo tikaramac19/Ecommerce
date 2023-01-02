@@ -7,7 +7,7 @@ const CallbackEx = () => {
     return a + b;
   }
 
-  // usecallback hook only memoize the function 
+  // usecallback hook only memoize the function
   const memoizeCallback = useCallback(() => calculation(22, 44), [data]);
 
   useEffect(() => {
