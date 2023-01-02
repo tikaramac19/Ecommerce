@@ -22,15 +22,21 @@ interface productItemProps {
   item: itemInterface;
   id: number;
   addToCartLogic: (tempId: number) => any;
+  addToFavrouteLogic: (tempId: number) => any;
 }
 
 const ProductItem = (props: productItemProps) => {
   const [favroute, setFavroute] = useState<boolean>(false);
 
-  const { item, id, addToCartLogic } = props;
+  const { item, id, addToCartLogic, addToFavrouteLogic } = props;
   // console.log(props);
   const handleFavroute = () => {
-    setFavroute(!favroute);
+    if (!favroute) {
+      setFavroute(!favroute);
+      addToFavrouteLogic(id);
+    } else {
+      setFavroute(false);
+    }
   };
   return (
     <>

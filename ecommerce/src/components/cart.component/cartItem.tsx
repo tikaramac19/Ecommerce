@@ -26,8 +26,10 @@ interface cartItemProps {
 
 const CartItem = (props: cartItemProps) => {
   const { totalPrice } = useSelector((state: any) => state.products);
-  const [price, setTotalPrice] = useState(totalPrice);
   const [count, setCount] = useState<number>(1);
+  const [pricetotal, setTotalPrice] = useState(totalPrice );
+
+  
   const { item, deleteCartItem, id } = props;
   // console.log(item);
 
@@ -78,7 +80,7 @@ const CartItem = (props: cartItemProps) => {
           </button>
         </div>
         <div className="total-price">
-          <span> Total Price : {price * count} $</span>
+          <span> Total Price : {pricetotal * count} $</span>
         </div>
         <div className="btn-section">
           <Button title="Checkout" />

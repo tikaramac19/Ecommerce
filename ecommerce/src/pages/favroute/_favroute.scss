@@ -1,0 +1,11 @@
+.fav-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .favroutes-list{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+}

@@ -1,7 +1,10 @@
 import React, { memo, useState } from "react";
 import "./_productsList.scss";
 import ProductItem from "./productItem";
-import { addToCart } from "../../store/productSlice/productSlice";
+import {
+  addToCart,
+  addToFavroute,
+} from "../../store/productSlice/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 interface itemInterface {
@@ -32,6 +35,16 @@ const ProductsList = () => {
     dispatch(addToCart(checkItem));
   };
 
+  const addToFavrouteLogic = (tempId: number) => {
+    const favrouteItem = products.filter((item: itemInterface, id: number) => {
+      if (tempId === id) {
+        return true;
+      }
+    });
+    // console.log(favrouteItem);
+    dispatch(addToFavroute(favrouteItem));
+  };
+
   return (
     <>
       <div className="list-container">
@@ -44,6 +57,7 @@ const ProductsList = () => {
                 id={id}
                 item={item}
                 addToCartLogic={addToCartLogic}
+                addToFavrouteLogic={addToFavrouteLogic}
               />
             );
           })}

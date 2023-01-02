@@ -26,6 +26,9 @@ const Navbar = () => {
               <Link to={"/cart"}> Cart ({cartItems.length})</Link>
             </li>
             <li>
+              <Link to={"/favroutes"}> Favroute </Link>
+            </li>
+            <li>
               <Link to={"/auth/login"}>Login</Link>
             </li>
             <li>
