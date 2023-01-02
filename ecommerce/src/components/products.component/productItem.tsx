@@ -5,18 +5,8 @@ import Button from "../../common/Button/Button.common";
 import { AiFillEye } from "react-icons/ai";
 import { BsFillCartFill } from "react-icons/bs";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-
-interface itemInterface {
-  id: number;
-  title: string;
-  description: string;
-  brand: string;
-  category: string;
-  image: string[];
-  price?: number;
-  rating: number;
-  thumbnail: string;
-}
+import { itemInterface } from "../../@types/globleTypes/itemTypes";
+import toast from "react-hot-toast";
 
 interface productItemProps {
   item: itemInterface;
@@ -30,14 +20,24 @@ const ProductItem = (props: productItemProps) => {
 
   const { item, id, addToCartLogic, addToFavrouteLogic } = props;
   // console.log(props);
+
+  const favListNotification = () => {
+    toast.success("added to favroute list", {
+      duration: 2000,
+      position: "top-right",
+    });
+  };
+
   const handleFavroute = () => {
     if (!favroute) {
       setFavroute(!favroute);
       addToFavrouteLogic(id);
+      favListNotification();
     } else {
       setFavroute(false);
     }
   };
+
   return (
     <>
       <div className="item-container">

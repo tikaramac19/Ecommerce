@@ -3,17 +3,7 @@ import Layout from "../../components/layout/hoc/layout";
 import FavrouteItem from "../../components/favroute.component/favroute.comp";
 import { useSelector, useDispatch } from "react-redux";
 import "./_favroute.scss";
-interface itemInterface {
-  id: number;
-  title: string;
-  description: string;
-  brand: string;
-  category: string;
-  image: string[];
-  price?: number;
-  rating: number;
-  thumbnail: string;
-}
+import { itemInterface } from "../../@types/globleTypes/itemTypes";
 const FavroutePage = () => {
   const { favroutes } = useSelector((state: any) => state.products);
 

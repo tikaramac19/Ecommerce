@@ -6,35 +6,29 @@ import { BiArrowBack } from "react-icons/bi";
 import "./_cart.scss";
 import { Link } from "react-router-dom";
 import Layout from "../../components/layout/hoc/layout";
-interface itemInterface {
-  id: number;
-  title: string;
-  description: string;
-  brand: string;
-  category: string;
-  image: string[];
-  price?: number;
-  rating: number;
-  thumbnail: string;
-}
+import { itemInterface } from "../../@types/globleTypes/itemTypes";
+import toast from "react-hot-toast";
 
 const CartPage = () => {
   const { cartItems } = useSelector((state: any) => state.products);
   // console.log(cartItems);
+
+  const deleteNotification = () => {
+    toast.success("removed item from cart list", {
+      duration: 2000,
+      position: "top-right",
+    });
+  };
+
   const dispatch = useDispatch();
   const deleteCartItem = (tempId: number) => {
-    // console.log(tempId, cartItems[tempId]);
-
     const filterDelete = cartItems.filter((item: any, id: number) => {
-      // console.log(item)
-
       if (tempId !== id) {
         return true;
       }
     });
-
-    // console.log(filterDelete);
     dispatch(deleteCart(filterDelete));
+    deleteNotification();
   };
 
   return (
@@ -49,6 +43,7 @@ const CartPage = () => {
 
         <div className="carts">
           {cartItems.map((item: itemInterface[], id: number) => {
+            // console.log(item);
             return (
               <CartItem
                 key={id}

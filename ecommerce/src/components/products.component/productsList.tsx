@@ -6,33 +6,32 @@ import {
   addToFavroute,
 } from "../../store/productSlice/productSlice";
 import { useDispatch, useSelector } from "react-redux";
-
-interface itemInterface {
-  id: number;
-  title: string;
-  description: string;
-  brand: string;
-  category: string;
-  image: string[];
-  price?: number;
-  rating: number;
-  thumbnail: string;
-}
+import { itemInterface } from "../../@types/globleTypes/itemTypes";
+import toast, { Toaster } from "react-hot-toast";
 const ProductsList = () => {
   const { products } = useSelector((state: any) => state.products);
   //   console.log(products);
   const dispatch = useDispatch();
+
+  const notify = () => {
+    toast.success("Product added to cart", {
+      duration: 1500,
+      position: "top-right",
+    });
+  };
+
   const addToCartLogic = (tempId: number) => {
     // console.log(products[tempId]);
 
     const checkItem = products.filter((item: itemInterface, id: number) => {
       if (tempId === id) {
+        notify();
         return item;
       }
     });
     // console.log(checkItem)
-
     dispatch(addToCart(checkItem));
+    // console.log("product added");
   };
 
   const addToFavrouteLogic = (tempId: number) => {

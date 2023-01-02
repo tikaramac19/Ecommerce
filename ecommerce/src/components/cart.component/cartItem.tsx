@@ -6,17 +6,8 @@ import { BsPlus } from "react-icons/bs";
 import { FiMinus } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import "./_cartItem.scss";
-interface itemInterface {
-  id: number;
-  title: string;
-  description: string;
-  brand: string;
-  category: string;
-  image: string[];
-  price?: number;
-  rating: number;
-  thumbnail: string;
-}
+import { itemInterface } from "../../@types/globleTypes/itemTypes";
+import { Toaster } from "react-hot-toast";
 
 interface cartItemProps {
   item: itemInterface[];
@@ -27,11 +18,12 @@ interface cartItemProps {
 const CartItem = (props: cartItemProps) => {
   const { totalPrice } = useSelector((state: any) => state.products);
   const [count, setCount] = useState<number>(1);
-  const [pricetotal, setTotalPrice] = useState(totalPrice );
+  const [pricetotal, setTotalPrice] = useState(totalPrice);
 
-  
   const { item, deleteCartItem, id } = props;
   // console.log(item);
+
+  
 
   const increaseCount = () => {
     setCount(count + 1);
@@ -43,7 +35,6 @@ const CartItem = (props: cartItemProps) => {
       setCount(count - 1);
     }
   };
-  
 
   useEffect(() => {
     setTotalPrice(item[0].price);
@@ -53,7 +44,6 @@ const CartItem = (props: cartItemProps) => {
     <>
       <div className="cartItem-container">
         <div className="cart-img">
-          
           <img src={item[0].thumbnail} alt={item[0].title} />
 
           <button className="btn-del" onClick={() => deleteCartItem(id)}>

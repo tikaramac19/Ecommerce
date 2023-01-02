@@ -1,16 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-interface itemInterface {
-  id: number;
-  title: string;
-  description: string;
-  brand: string;
-  category: string;
-  image: string[];
-  price?: number;
-  rating: number;
-  thumbnail: string;
-}
+import { itemInterface } from "../../@types/globleTypes/itemTypes";
 interface intialStateType {
   products: itemInterface[];
   favroute: itemInterface[];
@@ -43,20 +33,10 @@ const productSlice = createSlice({
     addToCart: (state: any, actions) => {
       let tempCarts = [...state.cartItems];
       let newItem = actions.payload;
-      const calculatedGrandTotal = tempCarts.reduce(
-        (total: number, curr, id: number, arr) => {
-          total += arr[id].price;
-          console.log(total);
-          console.log(arr[id].price);
-        },
-        0
-      );
-      // console.log(calculatedGrandTotal);
+
       tempCarts.push(actions.payload);
 
       state.cartItems = tempCarts;
-      // console.log(actions.payload);
-      // state.grandTotal =
     },
     deleteCart: (state: any, actions) => {
       state.cartItems = actions.payload;
@@ -65,14 +45,9 @@ const productSlice = createSlice({
       let tempFavroutes = [...state.favroutes];
       let newItems = actions.payload;
 
-      // let existingItem = tempFavroutes.filter((item:itemInterface,id:number)=>item.id === newItems.id )
-      // console.log(existingItem, newItems);
-
       tempFavroutes.push(actions.payload);
 
       state.favroutes = tempFavroutes;
-
-      // console.log(state.favroutes);
     },
     deleteFavroute: (state: any, actions) => {
       const tempId = actions.payload;
@@ -85,8 +60,6 @@ const productSlice = createSlice({
           }
         }
       );
-      // console.log(filterFavroute);
-      // state.favroutes = actions.payload;
       state.favroutes = filterFavroute;
     },
   },
