@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 interface Iuser {
-  name: string;
-  age: number;
+  name?: string;
+  age?: number;
 }
 const users = [
   {
@@ -17,6 +17,8 @@ const UserDetails: React.FC = () => {
   const [name, setName] = useState<string>("");
   const [user, setUser] = useState<Iuser | undefined>();
 
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
   const handleSearch = () => {
     const searchUser = users.find((user) => {
       return user.name === name;
@@ -24,6 +26,19 @@ const UserDetails: React.FC = () => {
 
     setUser(searchUser);
   };
+
+  useEffect(() => {
+    if (!inputRef.current) {
+      return;
+    }
+
+    inputRef.current.focus();
+
+    // anotherway to check  is optional checking
+
+    // inputRef.current?.focus();
+
+  }, []);
 
   return (
     <>
@@ -33,7 +48,11 @@ const UserDetails: React.FC = () => {
           <h1>{user?.name}</h1>
           <h1>{user?.age}</h1>
         </div>
-        <input type="text" onChange={(e) => setName(e.target.value)} />
+        <input
+          type="text"
+          ref={inputRef}
+          onChange={(e) => setName(e.target.value)}
+        />
         <button onClick={handleSearch}>Find User</button>
       </div>
     </>
