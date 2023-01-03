@@ -29,8 +29,10 @@ const ProductsList = () => {
         return item;
       }
     });
-    // console.log(checkItem)
-    dispatch(addToCart(checkItem));
+
+    if (checkItem && checkItem.length > 0) {
+      dispatch(addToCart(checkItem[0]));
+    }
     // console.log("product added");
   };
 

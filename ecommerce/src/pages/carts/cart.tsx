@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart, deleteCart } from "../../store/productSlice/productSlice";
 import CartItem from "../../components/cart.component/cartItem";
@@ -10,7 +10,11 @@ import { itemInterface } from "../../@types/globleTypes/itemTypes";
 import toast from "react-hot-toast";
 
 const CartPage = () => {
-  const { cartItems } = useSelector((state: any) => state.products);
+  const products = useSelector((state: any) => state.products);
+
+  const cartItems = useMemo(()=>{
+    return products?.cartItems
+  },[products])
   // console.log(cartItems);
 
   const deleteNotification = () => {
@@ -22,7 +26,7 @@ const CartPage = () => {
 
   const dispatch = useDispatch();
   const deleteCartItem = (tempId: number) => {
-    const filterDelete = cartItems.filter((item: any, id: number) => {
+    const filterDelete = cartItems?.filter((item: any, id: number) => {
       if (tempId !== id) {
         return true;
       }
@@ -42,7 +46,7 @@ const CartPage = () => {
         <h1>Your Cart</h1>
 
         <div className="carts">
-          {cartItems.map((item: itemInterface[], id: number) => {
+          {cartItems?.map((item: itemInterface, id: number) => {
             // console.log(item);
             return (
               <CartItem

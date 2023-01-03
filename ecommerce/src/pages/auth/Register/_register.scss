@@ -1,0 +1,275 @@
+// breakpoints for different viewport devices
+$media-desktop: "only screen and (max-width : 1024px)";
+$media-tablet: "only screen and (max-width : 768px)";
+$media-mobile: "only screen and (max-width : 600px)";
+$media-mobile-sm: "only screen and (max-width : 480px)";
+
+.registration-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  background: #d899db;
+  background-image: linear-gradient(to right, red);
+  padding: 4rem 3rem;
+  display: flex;
+  justify-content: center;
+  .registration-container {
+    height: auto;
+    width: 100%;
+    background: #fff;
+    border-radius: 0.5rem;
+    display: flex;
+
+    .bg-warpper {
+      flex: 2;
+      background: #f3d082;
+      .slogon {
+        font-size: 1.4rem;
+        color: #84600f;
+        margin: 3rem;
+      }
+      .img-container {
+        height: 400px;
+        width: 400px;
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        align-items: center;
+        img {
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+    .left-content-wrapper {
+      flex: 3;
+      width: 100%;
+      .link-to-login {
+        float: inline-end;
+        margin: 2rem;
+        p {
+          font-size: 0.9rem;
+          color: #333;
+        }
+        span {
+          padding: 0rem 0.3rem;
+          a {
+            text-decoration: none;
+          }
+        }
+      }
+      .login-options {
+        width: 500px;
+        margin: auto;
+        margin-top: 5rem;
+        padding: 1rem;
+        .title {
+          font-size: 1.5rem;
+          font-weight: bold;
+          color: #333;
+        }
+        .google-signup {
+          margin-top: 1rem;
+          display: flex;
+          button {
+            height: 32px;
+            border: none;
+            outline: none;
+            color: white;
+            background-color: #3f7fe9;
+            padding: 0rem 1rem;
+            border-radius: 0.3rem;
+            text-align: center;
+
+            &:hover {
+              background-color: #2f66bf;
+              cursor: pointer;
+              transition: all 0.3s ease;
+            }
+          }
+          .twitter {
+            height: 32px;
+            // font-size: 1.2rem;
+            border-radius: 0.3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgb(177, 177, 177);
+            margin: 0rem 1rem;
+            padding: 0rem 0.8rem;
+
+            &:hover {
+              background-color: #bebebe;
+              cursor: pointer;
+              transition: all 0.3s ease;
+            }
+          }
+          .facebook {
+            height: 32px;
+            padding: 0rem 1rem;
+            border-radius: 0.3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgb(177, 177, 177);
+            padding: 0rem 0.8rem;
+
+            &:hover {
+              background-color: #bebebe;
+              cursor: pointer;
+              transition: all 0.3s ease;
+            }
+          }
+        }
+        .or-line {
+          margin-top: 1rem;
+          display: flex;
+          align-items: center;
+          div {
+            width: 50%;
+            height: 1px;
+            background: rgb(140, 140, 140);
+          }
+          span {
+            margin: 0rem 1rem;
+            color: gray;
+          }
+        }
+      }
+      .form-wrapper {
+        width: 30rem;
+        margin: auto;
+        padding: 1rem;
+        display: flex;
+
+        .form-container {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          .name-container {
+            display: flex;
+
+            label {
+              margin: 0.6rem 0rem;
+              color: #333;
+              font-weight: bold;
+            }
+
+            input {
+              height: 32px;
+              width: 95%;
+              border-radius: 0.2rem;
+              border: none;
+              outline: none;
+              padding: 0rem 0.3rem;
+              background: #d8d8d8;
+            }
+          }
+
+          .username-cont {
+            display: flex;
+            flex-direction: column;
+            margin-top: 1rem;
+
+            label {
+              color: #333;
+              font-weight: bold;
+            }
+            input {
+              height: 32px;
+              width: 100%;
+              border-radius: 0.2rem;
+              border: none;
+              outline: none;
+              padding: 0rem 0.3rem;
+              background: #d8d8d8;
+            }
+          }
+
+          .terms-condition {
+            margin: 1rem 0rem;
+            display: flex;
+            align-items: flex-start;
+            p {
+              color: gray;
+            }
+            input {
+              margin-right: 1rem;
+            }
+          }
+
+          button {
+            height: 34px;
+            width: 150px;
+            background-color: #ea4c89;
+            border: none;
+            outline: none;
+            border-radius: 0.3rem;
+            color: white;
+            font-weight: bold;
+            padding: 0.2rem 1rem;
+            cursor: pointer;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+              rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+            &:hover {
+              background-color: #d6306f;
+            }
+          }
+
+          .error-msg {
+            font-size: 0.8rem;
+            color: crimson;
+          }
+        }
+      }
+    }
+  }
+}
+
+// media queries
+@media #{$media-mobile-sm} {
+  .left-content-wrapper {
+    .link-to-login {
+      width: 100%;
+      text-align: center;
+    }
+    .login-options {
+      width: 100%;
+      text-align: center;
+      .google-signup {
+        justify-content: center;
+      }
+      .or-line {
+        flex-direction: column;
+      }
+    }
+
+    .form-wrapper {
+      .form-container {
+        width: 400px;
+        display: flex;
+      }
+    }
+  }
+}
+@media #{$media-mobile} {
+  .form-wrapper {
+    width: 400px;
+
+    .name-container {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+@media #{$media-desktop} {
+  .bg-warpper {
+    display: none;
+  }
+}
+
+@media #{$media-tablet} {
+  .registration-wrapper {
+    padding: 0rem;
+  }
+}

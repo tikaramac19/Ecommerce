@@ -8,4 +8,5 @@ export interface itemInterface {
     price?: number;
     rating: number;
     thumbnail: string;
+    quantity: number;
   }

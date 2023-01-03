@@ -4,7 +4,7 @@ import { itemInterface } from "../../@types/globleTypes/itemTypes";
 interface intialStateType {
   products: itemInterface[];
   favroute: itemInterface[];
-  cartItems: itemInterface[];
+  cartItems?: itemInterface[];
   deleteItem: itemInterface[];
   favroutes: itemInterface[];
   totalPrice: number;
@@ -34,9 +34,15 @@ const productSlice = createSlice({
       let tempCarts = [...state.cartItems];
       let newItem = actions.payload;
 
-      tempCarts.push(actions.payload);
+      if (tempCarts.length === 0) {
+        state.cartItems = [newItem];
+      } else {
+        const filteredItems = tempCarts.filter((item) => {
+          return item.id !== newItem.id;
+        });
 
-      state.cartItems = tempCarts;
+        state.cartItems = [...filteredItems, newItem];
+      }
     },
     deleteCart: (state: any, actions) => {
       state.cartItems = actions.payload;

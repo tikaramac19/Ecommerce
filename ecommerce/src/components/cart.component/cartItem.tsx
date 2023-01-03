@@ -10,7 +10,7 @@ import { itemInterface } from "../../@types/globleTypes/itemTypes";
 import { Toaster } from "react-hot-toast";
 
 interface cartItemProps {
-  item: itemInterface[];
+  item: itemInterface;
   id: number;
   deleteCartItem: (tempId: number) => any;
 }
@@ -36,29 +36,31 @@ const CartItem = (props: cartItemProps) => {
     }
   };
 
+  console.log('item in cart: ', item)
+
   useEffect(() => {
-    setTotalPrice(item[0].price);
+    setTotalPrice(item.price);
   }, []);
 
   return (
     <>
       <div className="cartItem-container">
         <div className="cart-img">
-          <img src={item[0].thumbnail} alt={item[0].title} />
+          <img src={item.thumbnail} alt={item.title} />
 
           <button className="btn-del" onClick={() => deleteCartItem(id)}>
             <AiFillDelete className="delete-icon" />
           </button>
         </div>
         <div className="cart-price">
-          <h3>{item[0].title}</h3>
-          <h4>{item[0].price} $</h4>
+          <h3>{item.title}</h3>
+          <h4>{item.price} $</h4>
         </div>
         <div className="cart-rating">
           <span>
             <FcRating className="ratingIcon" />
           </span>
-          <span> {item[0].description}</span>
+          <span> {item.description}</span>
         </div>
         <div className="order">
           <button onClick={increaseCount}>
