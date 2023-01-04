@@ -16,6 +16,7 @@ interface productItemProps {
 }
 
 const ProductItem = (props: productItemProps) => {
+  const [mouseOver, setMouseOver] = useState(false);
   const [favroute, setFavroute] = useState<boolean>(false);
 
   const { item, id, addToCartLogic, addToFavrouteLogic } = props;
@@ -61,13 +62,9 @@ const ProductItem = (props: productItemProps) => {
             <FcRating className="ratingIcon" />
           </span>
           <span> {item.rating}</span>
+          <div>Lorem ipsum dolor sit</div>
         </div>
         <div className="btn-section">
-          <button>
-            Details
-            <AiFillEye className="" />
-          </button>
-          {/* <Button title="Add to cart"/> */}
           <button onClick={() => addToCartLogic(id)}>
             Add to cart <BsFillCartFill />
           </button>

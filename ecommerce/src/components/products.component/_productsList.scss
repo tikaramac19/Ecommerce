@@ -1,13 +1,11 @@
-.list-container{
-    display: flex;
-    height: auto;
-    width: 100%;
+.list-container {
+  display: flex;
+  height: auto;
+  width: 100%;
 
-    .item-wrapper{
-        display: flex;
-        flex-wrap: wrap;
-        margin: 2rem 0rem;
-        gap: 2rem;
-        justify-content: center;
-    }
+  .item-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
