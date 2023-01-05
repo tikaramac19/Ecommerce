@@ -10,6 +10,7 @@ interface intialStateType {
   totalPrice: number;
   grandTotal: number;
   pageTitle: string;
+  isFavroute: boolean;
 }
 
 const initialState = {
@@ -21,6 +22,8 @@ const initialState = {
   totalPrice: 0,
   grandTotal: 0,
   pageTitle: "Products",
+  showDeleteBtn: false,
+  isFavroute: false,
 } as intialStateType;
 
 const productSlice = createSlice({
@@ -49,11 +52,17 @@ const productSlice = createSlice({
     },
     addToFavroute: (state: any, actions) => {
       let tempFavroutes = [...state.favroutes];
-      let newItems = actions.payload;
+      let newItem = actions.payload;
 
-      tempFavroutes.push(actions.payload);
+      if (tempFavroutes.length === 0) {
+        state.favroutes = [newItem];
+      } else {
+        const filteredItems = tempFavroutes.filter((item) => {
+          return item.id !== newItem.id;
+        });
 
-      state.favroutes = tempFavroutes;
+        state.favroutes = [...filteredItems, newItem];
+      }
     },
     deleteFavroute: (state: any, actions) => {
       const tempId = actions.payload;
@@ -68,8 +77,10 @@ const productSlice = createSlice({
       );
       state.favroutes = filterFavroute;
     },
+    setIsFavroute: (state: any, actions) => {
+      state.isFavroute = actions.payload;
+    },
   },
-  extraReducers: (builder) => {},
 });
 export const {
   addProducts,
@@ -77,5 +88,7 @@ export const {
   deleteCart,
   addToFavroute,
   deleteFavroute,
+  setIsFavroute,
 } = productSlice.actions;
+
 export default productSlice.reducer;

@@ -7,7 +7,6 @@ import { FiMinus } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import "./_cartItem.scss";
 import { itemInterface } from "../../@types/globleTypes/itemTypes";
-import { Toaster } from "react-hot-toast";
 
 interface cartItemProps {
   item: itemInterface;
@@ -23,8 +22,6 @@ const CartItem = (props: cartItemProps) => {
   const { item, deleteCartItem, id } = props;
   // console.log(item);
 
-  
-
   const increaseCount = () => {
     setCount(count + 1);
   };
@@ -36,7 +33,7 @@ const CartItem = (props: cartItemProps) => {
     }
   };
 
-  console.log('item in cart: ', item)
+  // console.log("item in cart: ", item);
 
   useEffect(() => {
     setTotalPrice(item.price);

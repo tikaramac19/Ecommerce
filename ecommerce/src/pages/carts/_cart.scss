@@ -16,14 +16,16 @@
     margin: 2rem 0rem;
     gap: 2rem;
     justify-content: center;
+    // position: relative;
+    // z-index: -1;
   }
-  .abs-back-link{
+  .abs-back-link {
     position: absolute;
     top: 6%;
     left: 13%;
     text-align: center;
 
-    a{
+    a {
       font-size: 1.2rem;
       color: #333;
       font-weight: bold;

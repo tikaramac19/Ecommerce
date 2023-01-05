@@ -1,12 +1,11 @@
-import React, { memo, useState } from "react";
+import React, { memo, useEffect, useMemo, useState } from "react";
 import "./_productItem.scss";
 import { FcRating } from "react-icons/fc";
-import Button from "../../common/Button/Button.common";
-import { AiFillEye } from "react-icons/ai";
 import { BsFillCartFill } from "react-icons/bs";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { itemInterface } from "../../@types/globleTypes/itemTypes";
 import toast from "react-hot-toast";
+import { useSelector, useDispatch } from "react-redux";
 
 interface productItemProps {
   item: itemInterface;
@@ -14,13 +13,20 @@ interface productItemProps {
   addToCartLogic: (tempId: number) => any;
   addToFavrouteLogic: (tempId: number) => any;
 }
-
 const ProductItem = (props: productItemProps) => {
-  const [mouseOver, setMouseOver] = useState(false);
   const [favroute, setFavroute] = useState<boolean>(false);
+  // console.log(favroute);
+  const { favroutes } = useSelector((state: any) => state.products);
 
   const { item, id, addToCartLogic, addToFavrouteLogic } = props;
   // console.log(props);
+  // let { isFavroute } = products;
+  // console.log(isFavroute);
+  let favrouteItems = useMemo(() => {
+    return favroutes;
+  }, []);
+
+  // console.log(favrouteItems);
 
   const favListNotification = () => {
     toast.success("added to favroute list", {
@@ -29,23 +35,33 @@ const ProductItem = (props: productItemProps) => {
     });
   };
 
-  const handleFavroute = () => {
+  const handleFavroute = (tempId: number) => {
+    console.log("Fav List", favrouteItems);
+
     if (!favroute) {
-      setFavroute(!favroute);
+      // console.log(!favroute);
       addToFavrouteLogic(id);
       favListNotification();
+      setFavroute(true);
     } else {
       setFavroute(false);
     }
   };
+
+  useEffect(() => {
+    favrouteItems.map((favItem: itemInterface, id: number) => {
+      if (favItem?.id === item?.id) {
+        setFavroute(true);
+      }
+    });
+  }, []);
 
   return (
     <>
       <div className="item-container">
         <div className="item-img">
           <img src={item.thumbnail} alt={item.title} />
-
-          <button className="heartBtn" onClick={handleFavroute}>
+          <button className="heartBtn" onClick={() => handleFavroute(item.id)}>
             {favroute ? (
               <AiFillHeart className="heart-icon" />
             ) : (

@@ -6,34 +6,29 @@ $media-mobile-sm: "only screen and (max-width : 480px)";
 
 .nav-container {
   width: 100%;
-  height: 84px;
-  background: #333;
+  height: 100px;
+  background: #fff;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  padding: 0rem 2rem;
+  position: sticky;
 
   .nav-left {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+
     .nav-logo {
-      h3 {
-        font-size: 1.4rem;
-        color: #fff;
+      margin-left: 0rem;
+      a {
+        text-decoration: none;
+        font-size: 1.7rem;
+        color: #8f653a;
         font-weight: bold;
-        cursor: pointer;
-      }
-    }
-  }
-  .nav-right {
-    .three-line {
-      display: none;
-      font-size: 1.7rem;
-      float: inline-end;
-      color: #fff;
-      .three-line-icon {
-        cursor: pointer;
       }
       @media #{$media-desktop} {
-        display: block;
+        margin-left: 2.6rem;
       }
     }
 
@@ -42,16 +37,16 @@ $media-mobile-sm: "only screen and (max-width : 480px)";
       //   position: relative;
       li {
         display: inline-block;
-        padding: 0rem 1.5rem;
 
         a {
-          font-size: 1rem;
+          font-size: 0.9rem;
           font-weight: bold;
           text-decoration: none;
-          color: #fff;
-
+          color: #333;
+          padding: 0rem 0.5rem;
           &:hover {
-            color: crimson;
+            color: #daa520;
+            transition: all 0.2s ease;
           }
         }
       }
@@ -59,15 +54,57 @@ $media-mobile-sm: "only screen and (max-width : 480px)";
         display: none;
       }
     }
-    .list-items-show {
+
+    .three-line {
       position: absolute;
-      height: 100%;
-      width: 35%;
-      top: 15%;
+      top: 2.2rem;
+      left: 1.5%;
+      display: none;
+      font-size: 1.7rem;
+      color: #333;
+      .three-line-icon {
+        cursor: pointer;
+      }
+      @media #{$media-desktop} {
+        display: block;
+      }
+    }
+  }
+  .nav-right {
+    .list-items-show {
+      position: fixed;
+      height: 100vh;
+      width: 40%;
+      top: 0%;
       left: 0%;
-      background-color: #333;
+      background-color: #daa520;
       transition: all 0.3s ease;
       z-index: 999;
+
+      .title-cont {
+        display: flex;
+        // justify-content: ;
+        position: relative;
+        color: white;
+        margin: 2rem 1rem;
+        h1 {
+          color: white;
+          font-weight: bold;
+        }
+        .cancle-btn {
+          position: absolute;
+          padding: 0.2rem 0.5rem;
+          top: 10%;
+          right: 2%;
+          font-size: 1.2rem;
+          border: 1px solid #8f653a;
+          border-radius: 0.3rem;
+          .cancle-icons {
+            cursor: pointer;
+          }
+        }
+      }
+
       li {
         display: flex;
         flex-direction: column;
@@ -87,15 +124,78 @@ $media-mobile-sm: "only screen and (max-width : 480px)";
           }
         }
       }
+
+      @media #{$media-mobile} {
+        display: block;
+        width: 100%;
+      }
     }
     .list-items-hide {
       position: absolute;
       height: 100%;
-      width: 35%;
+      width: 40%;
       top: 15%;
-      left: -35%;
-      background-color: #333;
+      left: -40%;
+      background-color: #daa520;
       transition: all 0.3s ease;
+    }
+
+    // styling right registration container
+    .right-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .search {
+        display: flex;
+        align-items: center;
+        height: 44px;
+        width: auto;
+        padding: 0rem 0.5rem;
+        background-color: #eeeeee;
+        border-radius: 0.3rem;
+        input {
+          height: 100%;
+          width: 100%;
+          background-color: transparent;
+          border: none;
+          outline: none;
+        }
+        span {
+          display: flex;
+          align-items: center;
+          font-size: 1.2rem;
+          cursor: pointer;
+          color: #8f653a;
+          border-left: 1px solid #8f653a;
+        }
+      }
+      .icons-container {
+        display: flex;
+        .icons {
+          padding: 0rem 0.5rem;
+          font-size: 1.6rem;
+          color: #333;
+          a {
+            text-decoration: none;
+            color: rgb(30, 30, 30);
+
+            .icon {
+              &:hover {
+                color: #8f653a;
+                transition: all 0.3s ease;
+              }
+            }
+          }
+          .cart-icon {
+            a {
+              position: relative;
+              .abs-cart-count {
+                position: absolute;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

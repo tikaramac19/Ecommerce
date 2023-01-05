@@ -1,11 +1,25 @@
-.fav-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.fav-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  .abs-back-link {
+    position: absolute;
+    top: 6%;
+    left: 13%;
+    text-align: center;
 
-    .favroutes-list{
-        display: flex;
-        flex-wrap: wrap;
+    a {
+      font-size: 1.2rem;
+      color: #333;
+      font-weight: bold;
     }
+  }
 
+  .favroutes-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }

@@ -5,11 +5,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  // z-index: -1;
+  // position: relative;
 
-  .page-title{
+  .page-title {
     margin-top: 1rem;
     font-size: 1.3rem;
     color: #333;
   }
-
 }

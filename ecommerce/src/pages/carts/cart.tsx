@@ -27,6 +27,7 @@ const CartPage = () => {
   const dispatch = useDispatch();
   const deleteCartItem = (tempId: number) => {
     const filterDelete = cartItems?.filter((item: any, id: number) => {
+      // console.log(item)
       if (tempId !== id) {
         return true;
       }

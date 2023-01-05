@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AiFillDelete, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { FcRating } from "react-icons/fc";
 import { useDispatch } from "react-redux";
 import { deleteFavroute } from "../../store/productSlice/productSlice";
 import { itemInterface } from "../../@types/globleTypes/itemTypes";
 import { toast } from "react-hot-toast";
+
 interface favrouteItemProps {
-  item: itemInterface[];
+  item: itemInterface;
   id: number;
 }
 
 const FavrouteItem = (props: favrouteItemProps) => {
+  const [showDeleteBtn, setShowDeleteBtn] = useState(false);
   const { item, id } = props;
   const dispatch = useDispatch();
 
@@ -23,30 +25,45 @@ const FavrouteItem = (props: favrouteItemProps) => {
     });
   };
 
-  const handleDeleteFavroute = () => {
+  const handleDeleteFavroute = (e: any) => {
+    e.preventDefault();
+    e.stopPropagation();
     dispatch(deleteFavroute(id));
     deleteNotification();
   };
 
+  const handleMouseEvent = (e: any, value: boolean) => {
+    e.preventDefault();
+    e.stopPropagation();
+    // console.log("event");
+    setShowDeleteBtn(value);
+  };
+
   return (
     <>
-      <div className="cartItem-container">
+      <div
+        className="cartItem-container"
+        onMouseOver={(e) => handleMouseEvent(e, true)}
+        onMouseLeave={(e) => handleMouseEvent(e, false)}
+      >
         <div className="cart-img">
-          <img src={item[0].thumbnail} alt={item[0].title} />
+          <img src={item.thumbnail} alt={item.title} />
 
-          <button className="btn-del" onClick={handleDeleteFavroute}>
-            <AiFillDelete className="delete-icon" />
-          </button>
+          {showDeleteBtn && (
+            <button className="btn-del" onClick={handleDeleteFavroute}>
+              <AiFillDelete className="delete-icon" />
+            </button>
+          )}
         </div>
         <div className="cart-price">
-          <h3>{item[0].title}</h3>
-          <h4>{item[0].price} $</h4>
+          <h3>{item.title}</h3>
+          <h4>{item.price} $</h4>
         </div>
         <div className="cart-rating">
           <span>
             <FcRating className="ratingIcon" />
           </span>
-          <span> {item[0].description}</span>
+          <span> {item.description}</span>
         </div>
       </div>
     </>
