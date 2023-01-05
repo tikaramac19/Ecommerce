@@ -6,6 +6,7 @@ interface otpProps  {
 
 const OtpLogin: React.FC<otpProps> = (props) =>{
     const {updateName} = props
+    
     return(<>
     
         <div className="social-container">
