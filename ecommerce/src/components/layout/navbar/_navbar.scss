@@ -11,8 +11,6 @@ $media-mobile-sm: "only screen and (max-width : 480px)";
   display: flex;
   justify-content: space-around;
   align-items: center;
-  position: sticky;
-
   .nav-left {
     display: flex;
     justify-content: space-between;
@@ -71,6 +69,12 @@ $media-mobile-sm: "only screen and (max-width : 480px)";
     }
   }
   .nav-right {
+    .user-name {
+      color: #7f56da;
+      margin-right: 0.5rem;
+      font-weight: bold;
+      font-weight: 0.7rem;
+    }
     .list-items-show {
       position: fixed;
       height: 100vh;

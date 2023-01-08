@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./_navbar.scss";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -10,11 +10,16 @@ import { RxCross1 } from "react-icons/rx";
 import { CgProfile } from "react-icons/cg";
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
-  const { cartItems } = useSelector((state: any) => state.products);
-  // console.log(cartItems.length)
+  const { firstName, token } = useSelector((state: any) => state.authSlice);
+  // console.log(token);
   const handleToggle = () => {
     setToggle((prev) => !prev);
   };
+
+  // useEffect(() => {
+  //   localStorage.setItem("token", token);
+  // }, [token]);
+
   return (
     <>
       <div className="nav-container">
@@ -39,22 +44,29 @@ const Navbar = () => {
             <li>
               <Link to={"/sale"}>On Sale</Link>
             </li>
-            <li>
-              <Link to={"/auth/login"}>Login</Link>
-            </li>
-            <li>
-              <Link to={"/auth/register"}>Register</Link>
-            </li>
+            {token == "" ? (
+              <>
+                <li>
+                  <Link to={"/auth/login"}>Login</Link>
+                </li>
+
+                <li>
+                  <Link to={"/auth/register"}>Register</Link>
+                </li>
+              </>
+            ) : null}
           </ul>
         </div>
         <div className="nav-right">
           <div className="right-wrapper">
+            {firstName && <div className="user-name">{`Hi, ${firstName}`}</div>}
             <div className="search">
               <input type="text" placeholder="Search" />
               <span>
                 <BsSearch className="search-icons" />
               </span>
             </div>
+
             <div className="icons-container">
               <div className="icons fav-icon">
                 <Link to={"/favroutes"}>
