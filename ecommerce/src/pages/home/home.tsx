@@ -1,9 +1,12 @@
 import React from "react";
 import Layout from "../../components/layout/hoc/layout";
+import MiniNav from "../../common/miniNav/MiniNav";
 const HomePage = () => {
   return (
     <>
-      <h1>Home Page</h1>
+      <div className="home-container">
+        <MiniNav />
+      </div>
     </>
   );
 };

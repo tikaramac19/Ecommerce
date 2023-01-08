@@ -1,11 +1,12 @@
 import React, { memo, useEffect, useMemo, useState } from "react";
 import "./_productItem.scss";
 import { FcRating } from "react-icons/fc";
-import { BsFillCartFill } from "react-icons/bs";
+import { BsFillCartFill, BsEye } from "react-icons/bs";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { itemInterface } from "../../@types/globleTypes/itemTypes";
 import toast from "react-hot-toast";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 interface productItemProps {
   item: itemInterface;
@@ -16,7 +17,7 @@ interface productItemProps {
 const ProductItem = (props: productItemProps) => {
   const [favroute, setFavroute] = useState<boolean>(false);
   // console.log(favroute);
-  const { favroutes } = useSelector((state: any) => state.products);
+  const { favroutes } = useSelector((state: any) => state.productSlice);
 
   const { item, id, addToCartLogic, addToFavrouteLogic } = props;
   // console.log(props);
@@ -81,6 +82,8 @@ const ProductItem = (props: productItemProps) => {
           <div>Lorem ipsum dolor sit</div>
         </div>
         <div className="btn-section">
+          <Link to={`/products/${id}`}><BsEye /></Link>
+
           <button onClick={() => addToCartLogic(id)}>
             Add to cart <BsFillCartFill />
           </button>

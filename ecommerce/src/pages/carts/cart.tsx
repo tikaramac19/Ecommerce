@@ -8,13 +8,13 @@ import { Link } from "react-router-dom";
 import Layout from "../../components/layout/hoc/layout";
 import { itemInterface } from "../../@types/globleTypes/itemTypes";
 import toast from "react-hot-toast";
+import MiniNav from "../../common/miniNav/MiniNav";
 
 const CartPage = () => {
-  const products = useSelector((state: any) => state.products);
-
-  const cartItems = useMemo(()=>{
-    return products?.cartItems
-  },[products])
+  // const products = useSelector((state: any) => state.productsSlice);
+  const {
+    productSlice: { cartItems },
+  } = useSelector((state: any) => state);
   // console.log(cartItems);
 
   const deleteNotification = () => {
@@ -38,7 +38,9 @@ const CartPage = () => {
 
   return (
     <>
+      <MiniNav />
       <div className="cart-container">
+
         <div className="abs-back-link">
           <Link to={"/products"}>
             <BiArrowBack /> Back
@@ -47,7 +49,7 @@ const CartPage = () => {
         <h1>Your Cart</h1>
 
         <div className="carts">
-          {cartItems?.map((item: itemInterface, id: number) => {
+          {cartItems.map((item: itemInterface, id: number) => {
             // console.log(item);
             return (
               <CartItem

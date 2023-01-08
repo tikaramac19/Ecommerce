@@ -8,10 +8,11 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { itemInterface } from "../../@types/globleTypes/itemTypes";
 import toast, { Toaster } from "react-hot-toast";
+
 const ProductsList = () => {
-  const { products } = useSelector((state: any) => state.products);
+  const {productSlice: {products}} = useSelector((state: any) => state);
+  
   const [quantity, setQuantity] = useState(1);
-  //   console.log(products);
   const dispatch = useDispatch();
 
   const notify = () => {
@@ -22,8 +23,6 @@ const ProductsList = () => {
   };
 
   const addToCartLogic = (tempId: number) => {
-    // console.log(products[tempId]);
-
     const checkItem = products.filter((item: itemInterface, id: number) => {
       if (tempId === id) {
         notify();
@@ -48,7 +47,6 @@ const ProductsList = () => {
     if (checkFavroute && checkFavroute.length > 0) {
       dispatch(addToFavroute(checkFavroute[0]));
     }
-    // console.log(favrouteItem);
   };
 
   return (

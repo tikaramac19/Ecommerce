@@ -6,12 +6,17 @@ import "./_favroute.scss";
 import { itemInterface } from "../../@types/globleTypes/itemTypes";
 import { Link } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
+import MiniNav from "../../common/miniNav/MiniNav";
 
 const FavroutePage = () => {
-  const { favroutes } = useSelector((state: any) => state.products);
+  // const { favroutes } = useSelector((state: any) => state.productsSlice);
+  const {
+    productSlice: { favroutes },
+  } = useSelector((state: any) => state);
 
   return (
     <>
+      <MiniNav />
       <div className="fav-container">
         <div className="abs-back-link">
           <Link to={"/products"}>

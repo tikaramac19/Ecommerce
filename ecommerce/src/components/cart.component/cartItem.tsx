@@ -15,7 +15,7 @@ interface cartItemProps {
 }
 
 const CartItem = (props: cartItemProps) => {
-  const { totalPrice } = useSelector((state: any) => state.products);
+  const { totalPrice } = useSelector((state: any) => state.productSlice);
   const [count, setCount] = useState<number>(1);
   const [pricetotal, setTotalPrice] = useState(totalPrice);
 
