@@ -2,9 +2,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { itemInterface } from "../../@types/globleTypes/itemTypes";
 interface intialStateType {
-  products: itemInterface[];
+  products: any;
   favroute: itemInterface[];
-  cartItems?: itemInterface[];
+  cartItems: itemInterface[];
   deleteItem: itemInterface[];
   favroutes: itemInterface[];
   totalPrice: number;
