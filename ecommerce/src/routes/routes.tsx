@@ -6,6 +6,8 @@ import { Register } from "../pages/auth/Register/Register.pages";
 import { Products } from "../pages/products/Products";
 import { Cart } from "../pages/carts/cart";
 import { Favroute } from "../pages/favroute/Favroute";
+import DetailsPage from "../pages/details.page/details.page"
+import ProtectedRoutes from "../components/layout/protected_route/Protected";
 
 export const router = createBrowserRouter([
   {
@@ -26,11 +28,23 @@ export const router = createBrowserRouter([
   },
   {
     path: "/cart",
-    element: <Cart />,
+    element: (
+      <ProtectedRoutes>
+        <Cart />
+      </ProtectedRoutes>
+    ),
   },
   {
-    path:"/favroutes",
-    element:<Favroute />
+    path: "/favroutes",
+    element: (
+      <ProtectedRoutes>
+        <Favroute />
+      </ProtectedRoutes>
+    ),
+  },
+  {
+    path: '/products/:id',
+    element: <DetailsPage />
   },
   {
     path: "*",
