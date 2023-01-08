@@ -1,0 +1,189 @@
+// breakpoints for different viewport devices
+$media-desktop: "only screen and (max-width : 1024px)";
+$media-tablet: "only screen and (max-width : 768px)";
+$media-mobile: "only screen and (max-width : 600px)";
+$media-mobile-sm: "only screen and (max-width : 480px)";
+
+.login-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background: #d2d0dd;
+  padding: 4rem 3rem;
+
+  .login-wrapper {
+    height: 100vh;
+    width: 100%;
+    // border: 1px solid;
+    border-radius: 1rem;
+    display: flex;
+    .login-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex: 3;
+      background: #fff;
+
+      .login-info {
+        width: 60%;
+        margin: 0 auto;
+        align-items: center;
+        .title {
+          font-size: 1.8rem;
+          font-weight: bold;
+          color: #333;
+        }
+        .subtitle {
+          margin-top: 0.4rem;
+          font-size: 0.7rem;
+          color: gray;
+        }
+      }
+      .form-wrapper {
+        width: 60%;
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+
+        .form-container {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          .username-cont {
+            display: flex;
+            flex-direction: column;
+            label {
+              font-size: 0.8rem;
+              font-weight: bold;
+              color: rgb(88, 88, 88);
+              margin-bottom: 0.2rem;
+            }
+            .password {
+              margin-top: 1rem;
+            }
+            input {
+              width: 100%;
+              height: 36px;
+              margin-top: 5px;
+              outline: none;
+              border-radius: 5px;
+              border: 1px solid rgb(159, 159, 159);
+              padding: 0rem 0.5rem;
+            }
+            .error-msg {
+              font-size: 0.8rem;
+              color: crimson;
+            }
+          }
+          .formButtom {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+
+            .remember {
+              display: flex;
+              align-items: center;
+
+              input {
+                height: 12px;
+                width: 12px;
+                margin-right: 0.5rem;
+              }
+              p {
+                font-size: 0.7rem;
+                color: rgb(75, 75, 75);
+              }
+            }
+
+            .forget-password {
+              a {
+                font-size: 0.7rem;
+                text-decoration: none;
+              }
+            }
+          }
+
+          button {
+            margin-top: 1rem;
+            height: 34px;
+            background: #7f56da;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            color: #fff;
+            font-weight: bold;
+            opacity: 1;
+          }
+        }
+
+        .signIn-option {
+          margin-top: 1rem;
+          .google-signin {
+            button {
+              height: 34px;
+              width: 100%;
+              background: #fff;
+              border-radius: 5px;
+              border: 1px solid gray;
+              outline: none;
+              cursor: pointer;
+              color: #333;
+              // font-weight: bold;
+              align-items: center;
+              span {
+                margin-left: 0.6rem;
+              }
+
+              &:hover {
+                border-color: #7f56da;
+              }
+            }
+          }
+
+          .dont-have-account {
+            margin-top: 1.5rem;
+            text-align: center;
+            p {
+              font-size: 0.7rem;
+              a {
+                text-decoration: none;
+                margin-left: 5px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .login-right {
+      flex: 3;
+      background: #f3f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .circle {
+        height: 200px;
+        width: 200px;
+        background-color: #7f56da;
+        // border-radius: 50%;
+        clip-path: polygon(
+          50% 0%,
+          90% 20%,
+          100% 60%,
+          75% 100%,
+          25% 100%,
+          0% 60%,
+          10% 20%
+        );
+        // box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+      }
+    }
+
+    @media (max-width: 950px) {
+      .login-right {
+        display: none;
+      }
+    }
+  }
+}

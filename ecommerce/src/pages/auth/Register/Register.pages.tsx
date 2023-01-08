@@ -5,6 +5,7 @@ import { Formik, Form, Field, FormikProps } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import { BsGoogle, BsFacebook, BsTwitter } from "react-icons/bs";
+import MiniNav from "../../../common/miniNav/MiniNav";
 interface initialValuesTypes {
   fullname: string;
   username: string;
@@ -64,6 +65,7 @@ const RegisterPage = () => {
 
   return (
     <>
+      <MiniNav />
       <div className="registration-wrapper">
         <div className="registration-container">
           <div className="bg-warpper">
