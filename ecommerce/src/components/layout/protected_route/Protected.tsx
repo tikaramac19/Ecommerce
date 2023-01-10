@@ -8,13 +8,7 @@ interface protectedRouteProps {
 const ProtectedRoutes = ({ children }: protectedRouteProps) => {
   const { token } = useSelector((state: any) => state.authSlice);
   // console.log(token);
-  //   return token ? <Outlet /> : <Navigate to={"/auth/login"} />;
-
-  if (!token) {
-    return <Navigate to={"/auth/login"} />;
-  }
-
-  return <>{children}</>;
+  return token ? <Outlet /> : <Navigate to={"/auth/login"} />;
 };
 
 export default ProtectedRoutes;

@@ -1,24 +1,28 @@
 import React, { useEffect, useState } from "react";
 import "./_navbar.scss";
-import { Link, NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { stat } from "fs";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { VscThreeBars } from "react-icons/vsc";
 import { BsSearch, BsCart } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import { RxCross1 } from "react-icons/rx";
 import { CgProfile } from "react-icons/cg";
+import { logOutUser } from "../../../store/authSlice/authSlice";
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const { firstName, token } = useSelector((state: any) => state.authSlice);
-  // console.log(token);
   const handleToggle = () => {
     setToggle((prev) => !prev);
   };
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   // useEffect(() => {
   //   localStorage.setItem("token", token);
   // }, [token]);
+  const handleLogout = () => {
+    dispatch(logOutUser(''));
+    navigate('/auth/login');
+  }
 
   return (
     <>
@@ -59,7 +63,7 @@ const Navbar = () => {
         </div>
         <div className="nav-right">
           <div className="right-wrapper">
-            {firstName && <div className="user-name">{`Hi, ${firstName}`}</div>}
+            {token && <div className="user-name">{`Hi, ${firstName}`}</div>}
             <div className="search">
               <input type="text" placeholder="Search" />
               <span>
@@ -69,21 +73,19 @@ const Navbar = () => {
 
             <div className="icons-container">
               <div className="icons fav-icon">
-                <Link to={"/favroutes"}>
+                <Link to={"/favroutes"} title='Favroute'>
                   <AiOutlineHeart className="icon" />
                 </Link>
               </div>
               <div className="icons cart-icon">
-                <Link to={"/cart"} title="cart">
+                <Link to={"/cart"} title="Cart">
                   <BsCart className="icon" />
                   {/* <span className="abs-cart-count">{cartItems.length}</span> */}
                 </Link>
               </div>
-              <div className="icons cart-icon">
-                <Link to={"/profile"}>
-                  <CgProfile className="icon" />
-                </Link>
-              </div>
+              {token ? <div>
+                <button onClick={handleLogout} className="logout">LogOut</button>
+              </div> : null}
             </div>
           </div>
 
@@ -108,12 +110,14 @@ const Navbar = () => {
               <li>
                 <Link to={"/sale"}> On Sale </Link>
               </li>
-              <li>
-                <Link to={"/auth/login"}>Login</Link>
-              </li>
-              <li>
-                <Link to={"/auth/register"}>Register</Link>
-              </li>
+              {
+                token == "" && <><li>
+                  <Link to={"/auth/login"}>Login</Link>
+                </li>
+                  <li>
+                    <Link to={"/auth/register"}>Register</Link>
+                  </li></>
+              }
             </ul>
           </div>
         </div>

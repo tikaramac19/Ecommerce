@@ -48,6 +48,7 @@ $media-mobile-sm: "only screen and (max-width : 480px)";
           }
         }
       }
+
       @media #{$media-desktop} {
         display: none;
       }
@@ -175,6 +176,8 @@ $media-mobile-sm: "only screen and (max-width : 480px)";
       }
       .icons-container {
         display: flex;
+        justify-content: center;
+        align-items: center;
         .icons {
           padding: 0rem 0.5rem;
           font-size: 1.6rem;
@@ -190,6 +193,7 @@ $media-mobile-sm: "only screen and (max-width : 480px)";
               }
             }
           }
+
           .cart-icon {
             a {
               position: relative;
@@ -198,6 +202,29 @@ $media-mobile-sm: "only screen and (max-width : 480px)";
               }
             }
           }
+
+          a[title]:hover::after {
+            content: attr(title);
+            position: absolute;
+            background: #333;
+            padding: 0.3rem 1rem;
+            color: white;
+            font-weight: bold;
+            font-size: 0.8rem;
+            top: 0%;
+            border-bottom-right-radius: 0.3rem;
+            border-bottom-left-radius: 0.3rem;
+          }
+        }
+        .logout {
+          background: #8f653a;
+          color: white;
+          font-weight: bold;
+          border: none;
+          outline: none;
+          padding: 0.2rem 0.4rem;
+          border-radius: 0.3rem;
+          cursor: pointer;
         }
       }
     }
