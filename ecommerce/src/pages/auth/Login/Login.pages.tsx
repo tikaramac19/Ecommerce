@@ -120,7 +120,7 @@ const LoginPage = () => {
                         <div className="username-cont">
                           <label className="password">Password</label>
                           <Field
-                            type="text"
+                            type="password"
                             name="password"
                             values={values.password}
                             onChange={handleChange}

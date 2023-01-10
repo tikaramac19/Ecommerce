@@ -1,17 +1,17 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart, deleteCart } from "../../store/productSlice/productSlice";
 import CartItem from "../../components/cart.component/cartItem";
-import { BiArrowBack } from "react-icons/bi";
 import "./_cart.scss";
-import { Link } from "react-router-dom";
 import Layout from "../../components/layout/hoc/layout";
 import { itemInterface } from "../../@types/globleTypes/itemTypes";
 import toast from "react-hot-toast";
 import MiniNav from "../../common/miniNav/MiniNav";
-
+import { setTotalPrice } from "../../store/productSlice/productSlice";
 const CartPage = () => {
   // const products = useSelector((state: any) => state.productsSlice);
+  const { totalPrice } = useSelector((state: any) => state.productSlice);
+
   const {
     productSlice: { cartItems },
   } = useSelector((state: any) => state);
@@ -36,31 +36,71 @@ const CartPage = () => {
     deleteNotification();
   };
 
+  useEffect(() => {
+    let initialTotal = cartItems.reduce((total: number, id: number, curr: any, item: any) => {
+
+      return total += item[curr].price
+
+      // console.log(total, curr);
+
+    }, 0)
+    dispatch(setTotalPrice(initialTotal));
+  }, [])
+
   return (
     <>
       <MiniNav />
       <div className="cart-container">
-
-        <div className="abs-back-link">
-          <Link to={"/products"}>
-            <BiArrowBack /> Back
-          </Link>
+        <div className="leftContainer">
+          <div className="list-headers">
+            <ul>
+              <li>PRODUCT</li>
+              <li>PRICE</li>
+              <li>QUANTITY</li>
+              <li>SUB TOTAL</li>
+              <li>REMOVE</li>
+            </ul>
+            <hr />
+          </div>
+          <div>
+            <div className="carts">
+              {cartItems.map((item: itemInterface, id: number) => {
+                // console.log(item);
+                return (
+                  <CartItem
+                    key={id}
+                    item={item}
+                    deleteCartItem={deleteCartItem}
+                    id={id}
+                  />
+                );
+              })}
+            </div>
+            <div className="coupen-option">
+              <form>
+                <input type="text" placeholder="Coupon Code" />
+                <button>APPLY COUPON</button>
+              </form>
+            </div>
+          </div>
         </div>
-        <h1>Your Cart</h1>
+        <div className="checkoutContainer">
 
-        <div className="carts">
-          {cartItems.map((item: itemInterface, id: number) => {
-            // console.log(item);
-            return (
-              <CartItem
-                key={id}
-                item={item}
-                deleteCartItem={deleteCartItem}
-                id={id}
-              />
-            );
-          })}
+          <h3>CART TOTALS</h3>
+          <hr />
+          <div className="sub-total">
+            <h4>SUBTOTAL</h4>
+            <p>$ {totalPrice} </p>
+          </div>
+          <div className="total">
+            <h4>TOTAL</h4>
+            <p>$ {totalPrice}</p>
+          </div>
+          <div className="checkout-btn">
+            <button>proceed to checkout</button>
+          </div>
         </div>
+
       </div>
     </>
   );
