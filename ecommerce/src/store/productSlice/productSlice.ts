@@ -7,8 +7,9 @@ interface intialStateType {
   cartItems: itemInterface[];
   deleteItem: itemInterface[];
   favroutes: itemInterface[];
+  increaseTotal: number;
+  decreaseTotal: number;
   totalPrice: number;
-  grandTotal: number;
   pageTitle: string;
   isFavroute: boolean;
 }
@@ -19,8 +20,9 @@ const initialState = {
   cartItems: [],
   deleteItem: [],
   favroutes: [],
+  increaseTotal: 0,
+  decreaseTotal: 0,
   totalPrice: 0,
-  grandTotal: 0,
   pageTitle: "Products",
   showDeleteBtn: false,
   isFavroute: false,
@@ -36,6 +38,7 @@ const productSlice = createSlice({
     addToCart: (state: any, actions) => {
       let tempCarts = [...state.cartItems];
       let newItem = actions.payload;
+      // console.log(newItem);
 
       if (tempCarts.length === 0) {
         state.cartItems = [newItem];
@@ -80,6 +83,15 @@ const productSlice = createSlice({
     setIsFavroute: (state: any, actions) => {
       state.isFavroute = actions.payload;
     },
+    setTotalPrice: (state: any, actions) => {
+      state.totalPrice = actions.payload;
+    },
+    setIncreaseTotal: (state: any, actions) => {
+      state.totalPrice += actions.payload;
+    },
+    setDecreaseTotal: (state: any, actions) => {
+      state.totalPrice = state.totalPrice - actions.payload;
+    },
   },
 });
 export const {
@@ -89,6 +101,9 @@ export const {
   addToFavroute,
   deleteFavroute,
   setIsFavroute,
+  setTotalPrice,
+  setIncreaseTotal,
+  setDecreaseTotal,
 } = productSlice.actions;
 
 export default productSlice.reducer;
