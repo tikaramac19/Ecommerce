@@ -2,10 +2,8 @@ import React from "react";
 import Layout from "../../components/layout/hoc/layout";
 import FavrouteItem from "../../components/favroute.component/favroute.comp";
 import { useSelector, useDispatch } from "react-redux";
-import "./_favroute.scss";
+import "./_favroutePage.scss";
 import { itemInterface } from "../../@types/globleTypes/itemTypes";
-import { Link } from "react-router-dom";
-import { BiArrowBack } from "react-icons/bi";
 import MiniNav from "../../common/miniNav/MiniNav";
 
 const FavroutePage = () => {
@@ -18,11 +16,11 @@ const FavroutePage = () => {
     <>
       <MiniNav />
       <div className="fav-container">
-        <div className="abs-back-link">
+        {/* <div className="abs-back-link">
           <Link to={"/products"}>
             <BiArrowBack /> Back
           </Link>
-        </div>
+        </div> */}
         <h1>FavrouteList</h1>
         <div className="favroutes-list">
           {favroutes.map((item: itemInterface, id: number) => {
