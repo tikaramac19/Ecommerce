@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { FcRating } from "react-icons/fc";
-import Button from "../../common/Button/Button.common";
-import { AiFillDelete, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { BsPlus } from "react-icons/bs";
-import { FiMinus } from "react-icons/fi";
-import { useSelector } from "react-redux";
+import { CiSquareRemove } from "react-icons/ci"
+import { useDispatch } from "react-redux";
 import "./_cartItem.scss";
 import { itemInterface } from "../../@types/globleTypes/itemTypes";
-
+import { setIncreaseTotal, setDecreaseTotal } from "../../store/productSlice/productSlice";
+import { toast } from "react-hot-toast";
 interface cartItemProps {
   item: itemInterface;
   id: number;
@@ -15,65 +12,78 @@ interface cartItemProps {
 }
 
 const CartItem = (props: cartItemProps) => {
-  const { totalPrice } = useSelector((state: any) => state.productSlice);
-  const [count, setCount] = useState<number>(1);
-  const [pricetotal, setTotalPrice] = useState(totalPrice);
-
   const { item, deleteCartItem, id } = props;
-  // console.log(item);
 
-  const increaseCount = () => {
-    setCount(count + 1);
-  };
-  const decreaceCount = () => {
-    if (count === 0) {
-      setCount(count);
+  const [count, setCount] = useState<number>(1);
+  const [subPrice, setSubPrice] = useState<number | undefined>(() => item.price);
+  const [showDialog, setShowDialog] = useState<boolean>(false);
+  const dispatch = useDispatch();
+
+  // const handleDeleteNotification = () => {
+  //   toast.success('item deleted from cart !!', {
+  //     position: 'top-right',
+  //     duration: 2000
+  //   })
+  // }
+
+  const handlePriceChange = (change: 'inc' | 'dec', value: number) => {
+    if (change === 'dec') {
+      if (value <= 1) {
+        setCount(value);
+        setShowDialog(true);
+        return
+      } else {
+        setCount(value - 1);
+      }
+      dispatch(setDecreaseTotal(item.price));
+      setSubPrice(item.price * (value - 1));
+
     } else {
-      setCount(count - 1);
+      setCount(value + 1);
+      dispatch(setIncreaseTotal(item.price));
+      setSubPrice(item.price * (value + 1));
     }
-  };
+  }
 
-  // console.log("item in cart: ", item);
-
-  useEffect(() => {
-    setTotalPrice(item.price);
-  }, []);
+  const handleDeleteBtn = () => {
+    deleteCartItem(id);
+    setShowDialog(false);
+  }
 
   return (
     <>
       <div className="cartItem-container">
-        <div className="cart-img">
-          <img src={item.thumbnail} alt={item.title} />
+        <div className="product-list">
+          <div className="product-image">
+            <img src={item.thumbnail} alt={item.brand} />
+            <div className="brand-name">{item.title}</div>
+          </div>
+          <div className="price"> ${item.price}</div>
+          <div className="Quantity">
+            <div className="select-item">
+              <button onClick={() => handlePriceChange('dec', count)}>-</button>
+              <span>{count}</span>
+              <button onClick={() => handlePriceChange('inc', count)}>+</button>
+            </div>
+          </div>
+          <div className="subtotal">
+            <p> ${subPrice}</p>
+          </div>
+          <div className="remove">
+            <button onClick={() => deleteCartItem(id)}><CiSquareRemove className="deleteIcon" /></button>
+          </div>
+        </div>
 
-          <button className="btn-del" onClick={() => deleteCartItem(id)}>
-            <AiFillDelete className="delete-icon" />
-          </button>
-        </div>
-        <div className="cart-price">
-          <h3>{item.title}</h3>
-          <h4>{item.price} $</h4>
-        </div>
-        <div className="cart-rating">
-          <span>
-            <FcRating className="ratingIcon" />
-          </span>
-          <span> {item.description}</span>
-        </div>
-        <div className="order">
-          <button onClick={increaseCount}>
-            <BsPlus />
-          </button>
-          <span>{count}</span>
-          <button onClick={decreaceCount}>
-            <FiMinus />
-          </button>
-        </div>
-        <div className="total-price">
-          <span> Total Price : {pricetotal * count} $</span>
-        </div>
-        <div className="btn-section">
-          <Button title="Checkout" />
-        </div>
+        {
+          showDialog && <div className="dialog-container">
+            <div className="title">Remove from cart</div>
+            <div className="sub-title">Item(s) will be removed from order</div>
+            <div className="btns">
+              <button className="btn btn-one" onClick={() => setShowDialog(false)}>Cancel</button>
+              <button className="btn btn-two" onClick={() => handleDeleteBtn()}>Delete</button>
+            </div>
+          </div>
+        }
       </div>
     </>
   );
