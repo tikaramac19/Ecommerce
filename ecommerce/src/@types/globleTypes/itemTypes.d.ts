@@ -6,7 +6,7 @@ export interface itemInterface {
   category: string;
   images: string[] | null;
   stock?: number;
-  price?: number;
+  price: number;
   rating: number;
   thumbnail: string;
   quantity: number;
