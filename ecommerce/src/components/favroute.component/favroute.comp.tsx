@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { deleteFavroute } from "../../store/productSlice/productSlice";
 import { itemInterface } from "../../@types/globleTypes/itemTypes";
 import { toast } from "react-hot-toast";
-
+import "./favroutes.scss"
 interface favrouteItemProps {
   item: itemInterface;
   id: number;
@@ -42,7 +42,7 @@ const FavrouteItem = (props: favrouteItemProps) => {
   return (
     <>
       <div
-        className="cartItem-container"
+        className="favItem-container"
         onMouseOver={(e) => handleMouseEvent(e, true)}
         onMouseLeave={(e) => handleMouseEvent(e, false)}
       >
@@ -57,13 +57,13 @@ const FavrouteItem = (props: favrouteItemProps) => {
         </div>
         <div className="cart-price">
           <h3>{item.title}</h3>
-          <h4>{item.price} $</h4>
-        </div>
-        <div className="cart-rating">
-          <span>
-            <FcRating className="ratingIcon" />
-          </span>
-          <span> {item.description}</span>
+          <h4>$ {item.price}</h4>
+
+          <div className="stock">
+
+            <p>In Stock {item.stock}</p>
+
+          </div>
         </div>
       </div>
     </>
