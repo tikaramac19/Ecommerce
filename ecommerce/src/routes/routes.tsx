@@ -8,46 +8,56 @@ import { Cart } from "../pages/carts/cart";
 import { Favroute } from "../pages/favroute/Favroute";
 import DetailsPage from "../pages/details.page/details.page"
 import ProtectedRoutes from "../components/layout/protected_route/Protected";
-
+import { ErrorPage } from "../common/errorPage/error.common";
+import PublicRoutes from "../components/layout/protected_route/publicRoutes"
 export const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/products",
-    element: <Products />,
-  },
-  {
-    path: "/auth/login",
-    element: <Login />,
-  },
-  {
-    path: "/auth/register",
-    element: <Register />,
-  },
-  {
-    path: "/cart",
     element: (
-      <ProtectedRoutes>
-        <Cart />
-      </ProtectedRoutes>
+      <PublicRoutes />
     ),
+    children: [
+      {
+        path: '/auth/login',
+        element: <Login />
+      },
+      {
+        path: "/auth/register",
+        element: <Register />,
+      }
+    ]
   },
   {
-    path: "/favroutes",
-    element: (
-      <ProtectedRoutes>
-        <Favroute />
-      </ProtectedRoutes>
-    ),
-  },
-  {
-    path: '/products/:id',
-    element: <DetailsPage />
-  },
-  {
-    path: "*",
-    element: <div>Page Not Found</div>,
-  },
+    element: <ProtectedRoutes />,
+    children: [
+      {
+        path: "/cart",
+        element: (
+          <Cart />
+        ),
+      },
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/favroutes",
+        element: (
+          <Favroute />
+        ),
+      },
+      {
+        path: "/products",
+        element: <Products />,
+      }
+      ,
+      {
+        path: '/products/:id',
+        element: <DetailsPage />
+      },
+      {
+        path: "*",
+        element: <ErrorPage />,
+      },
+    ]
+  }
 ]);
