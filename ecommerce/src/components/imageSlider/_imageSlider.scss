@@ -1,0 +1,45 @@
+.slider-container {
+  min-height: 400px;
+  width: 100%;
+  //   border: 1px solid;
+  position: relative;
+
+  .previousIcon {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    font-size: 1.6rem;
+    left: 10px;
+    cursor: pointer;
+  }
+  .nextIcon {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    font-size: 1.6rem;
+    right: 10px;
+    cursor: pointer;
+  }
+
+  .filled-circle-cont {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(0, -50%);
+
+    .vsc-circle {
+      color: gray;
+      font-size: 1.2rem;
+      cursor: pointer;
+
+      &:hover {
+        color: blueviolet;
+        transition: all 0.3s ease;
+      }
+    }
+    .vsc-circle-active {
+      color: blueviolet;
+      transition: all 0.2s ease;
+    }
+  }
+}
