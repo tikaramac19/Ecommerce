@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../../components/layout/hoc/layout";
 import FavrouteItem from "../../components/favroute.component/favroute.comp";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import "./_favroutePage.scss";
 import { itemInterface } from "../../@types/globleTypes/itemTypes";
 import MiniNav from "../../common/miniNav/MiniNav";

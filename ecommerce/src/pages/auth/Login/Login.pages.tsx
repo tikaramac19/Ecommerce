@@ -5,7 +5,7 @@ import { Formik, Form, Field, FormikProps } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 // import axios from "axios";
 import { useNavigate } from "react-router-dom";

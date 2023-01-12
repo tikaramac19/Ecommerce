@@ -7,6 +7,7 @@ interface intialStateType {
   cartItems: itemInterface[];
   deleteItem: itemInterface[];
   favroutes: itemInterface[];
+  miniProducts: itemInterface[];
   increaseTotal: number;
   decreaseTotal: number;
   totalPrice: number;
@@ -16,6 +17,7 @@ interface intialStateType {
 
 const initialState = {
   products: [],
+  miniProducts: [],
   favroute: [],
   cartItems: [],
   deleteItem: [],
@@ -34,6 +36,9 @@ const productSlice = createSlice({
   reducers: {
     addProducts: (state, actions) => {
       state.products = actions.payload;
+    },
+    addMiniProducts: (state, actions) => {
+      state.miniProducts = actions.payload;
     },
     addToCart: (state: any, actions) => {
       let tempCarts = [...state.cartItems];
@@ -96,6 +101,7 @@ const productSlice = createSlice({
 });
 export const {
   addProducts,
+  addMiniProducts,
   addToCart,
   deleteCart,
   addToFavroute,

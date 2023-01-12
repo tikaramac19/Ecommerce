@@ -1,29 +1,50 @@
 import React, { useEffect, useState } from "react";
 import "./_navbar.scss";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { VscThreeBars } from "react-icons/vsc";
 import { BsSearch, BsCart } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import { RxCross1 } from "react-icons/rx";
-import { CgProfile } from "react-icons/cg";
 import { logOutUser } from "../../../store/authSlice/authSlice";
+import { addProducts } from "../../../store";
+import axios from "axios";
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
+  const [search, setSearch] = useState<string | null>('');
   const { firstName, token } = useSelector((state: any) => state.authSlice);
+
   const handleToggle = () => {
     setToggle((prev) => !prev);
   };
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   localStorage.setItem("token", token);
-  // }, [token]);
+
   const handleLogout = () => {
     dispatch(logOutUser(''));
     navigate('/auth/login');
   }
 
+  const handleChange = (e: any) => {
+    e.preventDefault();
+
+    setSearch(e.target.value);
+
+  }
+  console.log(search)
+
+  useEffect(() => {
+
+    let getSearchProduct = async () => {
+      const response = await axios.get(`https://dummyjson.com/products/search?q=${search}`);
+      const result = response.data;
+
+      dispatch(addProducts(result.products));
+    }
+
+    getSearchProduct();
+
+  }, [search]);
   return (
     <>
       <div className="nav-container">
@@ -65,7 +86,7 @@ const Navbar = () => {
           <div className="right-wrapper">
             {token && <div className="user-name">{`Hi, ${firstName}`}</div>}
             <div className="search">
-              <input type="text" placeholder="Search" />
+              <input type="text" placeholder="Search" onChange={(e) => handleChange(e)} />
               <span>
                 <BsSearch className="search-icons" />
               </span>

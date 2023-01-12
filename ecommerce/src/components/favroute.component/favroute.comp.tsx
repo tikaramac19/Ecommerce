@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { AiFillDelete, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { FcRating } from "react-icons/fc";
 import { useDispatch } from "react-redux";
 import { deleteFavroute } from "../../store/productSlice/productSlice";
 import { itemInterface } from "../../@types/globleTypes/itemTypes";

@@ -1,0 +1,104 @@
+.footer-container {
+  margin-top: 3rem;
+  padding: 2rem 5rem;
+  display: flex;
+  justify-content: space-between;
+  min-height: 13rem;
+  width: 100%;
+  background: #f2f2f2;
+
+  .site-desc {
+    width: 30%;
+    height: auto;
+
+    .title {
+      //   text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #8b6238;
+    }
+    .description {
+      font-size: 0.7rem;
+      color: rgb(91, 91, 91);
+      margin: 1rem 0rem;
+    }
+
+    .icons-container {
+      display: flex;
+      .icons {
+        font-size: 1.1rem;
+        margin-right: 1.2rem;
+        color: #333;
+        cursor: pointer;
+
+        &:hover {
+          color: #8b6238;
+          transition: all 0.3s ease-in-out;
+        }
+      }
+    }
+  }
+
+  .useful-links {
+    height: auto;
+    h3 {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #333;
+    }
+    .links-container {
+      margin-top: 0.4rem;
+      display: block;
+      li {
+        list-style-type: none;
+
+        a {
+          font-size: 0.7rem;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          color: #333;
+
+          &:hover {
+            color: #8b6238;
+            transition: all 0.2s ease-in-out;
+
+            transform: translateX(7%);
+          }
+        }
+      }
+    }
+  }
+
+  .payment-methods {
+    display: flex;
+    flex-direction: column;
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      .info-title {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .info-det {
+        margin-top: 0.3rem;
+        font-size: 0.8rem;
+      }
+    }
+
+    .options {
+      display: flex;
+      .same-img {
+        margin-top: 0.6rem;
+        margin-right: 1rem;
+        img {
+          height: 40px;
+          width: auto;
+        }
+      }
+    }
+  }
+}

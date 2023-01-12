@@ -1,0 +1,36 @@
+.demo-products-container {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 5rem;
+  .demo-header {
+    display: flex;
+    justify-content: space-between;
+
+    div {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #333;
+    }
+    .viewProduct {
+      font-size: 0.8rem;
+
+      a {
+        text-decoration: none;
+        color: #333;
+
+        &:hover {
+          color: #8b6238;
+          transition: all 0.3s ease;
+        }
+      }
+    }
+  }
+
+  .demo-products {
+    display: flex;
+    margin-top: 2rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}

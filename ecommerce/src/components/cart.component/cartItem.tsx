@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { CiSquareRemove } from "react-icons/ci"
 import { useDispatch } from "react-redux";
 import "./_cartItem.scss";
 import { itemInterface } from "../../@types/globleTypes/itemTypes";
 import { setIncreaseTotal, setDecreaseTotal } from "../../store/productSlice/productSlice";
-import { toast } from "react-hot-toast";
 interface cartItemProps {
   item: itemInterface;
   id: number;

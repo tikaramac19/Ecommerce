@@ -7,7 +7,7 @@ import {
 } from "../../store/productSlice/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { itemInterface } from "../../@types/globleTypes/itemTypes";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const ProductsList = () => {
   const {productSlice: {products}} = useSelector((state: any) => state);

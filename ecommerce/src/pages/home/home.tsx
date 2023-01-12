@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "../../components/layout/hoc/layout";
 import MiniNav from "../../common/miniNav/MiniNav";
 import ImageSlider from "../../components/imageSlider/imageSlider.component";
+import MiniProductsContainer from "../../components/miniProducts/miniProducts.component";
 const HomePage = () => {
 
   const imageSlides = [
@@ -17,6 +18,7 @@ const HomePage = () => {
       <div className="home-container">
         <MiniNav />
         <ImageSlider imageSlides={imageSlides} />
+        <MiniProductsContainer />
       </div>
     </>
   );

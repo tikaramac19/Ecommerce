@@ -5,7 +5,7 @@ import { BsFillCartFill, BsEye } from "react-icons/bs";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { itemInterface } from "../../@types/globleTypes/itemTypes";
 import toast from "react-hot-toast";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 interface productItemProps {
