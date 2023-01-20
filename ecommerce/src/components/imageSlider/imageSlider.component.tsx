@@ -14,14 +14,14 @@ interface imageSliderProps {
 const ImageSlider = (props: imageSliderProps) => {
     const [currIndex, setCurrIndex] = useState<number>(0)
     const { imageSlides } = props
-    const imgContiStyles = {
-        "backgroundImage": `url(${imageSlides[currIndex].url})`,
-        "height": "400px",
-        "width": "100%",
-        "backgroundSize": "contain",
-        "backgroundPosition": "center",
-        "positon": "relative",
-    }
+    // const imgContiStyles = {
+    //     "backgroundImage": `url(${imageSlides[currIndex].url})`,
+    //     "height": "400px",
+    //     "width": "100%",
+    //     "backgroundSize": "contain",
+    //     "backgroundPosition": "center",
+    //     "positon": "relative",
+    // }
 
     const handlePrevious = () => {
 
@@ -50,9 +50,21 @@ const ImageSlider = (props: imageSliderProps) => {
 
     return (<>
         <div className="slider-container">
-            <div className="images-container" style={imgContiStyles}>
+            <div className="images-container">
                 <FcPrevious className="previousIcon" onClick={handlePrevious} />
                 <FcNext className="nextIcon" onClick={handleNext} />
+
+                <div className="images-container images">
+                    {
+                        imageSlides.map((item: imagesType, id: number) => {
+                            if (currIndex === id) {
+                                return <>
+                                    <img src={item.url} alt={item.title} key={id.toString()} />
+                                </>
+                            }
+                        })
+                    }
+                </div>
 
                 <div className="filled-circle-cont">
                     {

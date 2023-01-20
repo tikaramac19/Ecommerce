@@ -1,3 +1,9 @@
+// breakpoints for different viewport devices
+$media-desktop: "only screen and (max-width : 1024px)";
+$media-tablet: "only screen and (max-width : 768px)";
+$media-mobile: "only screen and (max-width : 600px)";
+$media-mobile-sm: "only screen and (max-width : 480px)";
+
 .demo-products-container {
   display: flex;
   flex-direction: column;
@@ -10,6 +16,10 @@
       font-size: 1rem;
       font-weight: bold;
       color: #333;
+
+      @media #{$media-mobile} {
+        font-size: 0.9rem;
+      }
     }
     .viewProduct {
       font-size: 0.8rem;
@@ -22,7 +32,15 @@
           color: #8b6238;
           transition: all 0.3s ease;
         }
+
+        @media #{$media-mobile} {
+          font-size: 0.7rem;
+        }
       }
+    }
+
+    @media #{$media-mobile} {
+      font-size: 0.9rem;
     }
   }
 
@@ -32,5 +50,16 @@
     gap: 1rem;
     flex-wrap: wrap;
     justify-content: space-between;
+
+    @media #{$media-mobile} {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  @media #{$media-mobile-sm} {
+    width: 100%;
+    padding: 2rem;
+    justify-content: center;
   }
 }

@@ -7,27 +7,25 @@ import { itemInterface } from "../../@types/globleTypes/itemTypes";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 interface productItemProps {
   item: itemInterface;
   id: number;
-  addToCartLogic: (tempId: number) => any;
+  addToCartLogic: (tempId: number, e: any) => any;
   addToFavrouteLogic: (tempId: number) => any;
 }
 const ProductItem = (props: productItemProps) => {
   const [favroute, setFavroute] = useState<boolean>(false);
+  const [showHeart, setShowHeart] = useState<boolean>(false)
   // console.log(favroute);
   const { favroutes } = useSelector((state: any) => state.productSlice);
-
+  const { token } = useSelector((state: any) => state.authSlice);
   const { item, id, addToCartLogic, addToFavrouteLogic } = props;
-  // console.log(props);
-  // let { isFavroute } = products;
-  // console.log(isFavroute);
+  // console.log(token)
+  const navigate = useNavigate();
   let favrouteItems = useMemo(() => {
     return favroutes;
   }, []);
-
-  // console.log(favrouteItems);
 
   const favListNotification = () => {
     toast.success("added to favroute list", {
@@ -35,17 +33,36 @@ const ProductItem = (props: productItemProps) => {
       position: "top-right",
     });
   };
+  const favListNotificationError = () => {
+    toast.error('you need to login first !!', {
+      duration: 2000,
+      position: "top-right"
+    })
+  }
 
-  const handleFavroute = (tempId: number) => {
-    console.log("Fav List", favrouteItems);
+  const handleMouseOver = (e: any, value: boolean) => {
+    e.preventDefault();
+    e.stopPropagation();
 
-    if (!favroute) {
-      // console.log(!favroute);
-      addToFavrouteLogic(id);
-      favListNotification();
-      setFavroute(true);
+    setShowHeart(value);
+
+  }
+
+  const handleFavroute = (tempId: number, e: any) => {
+    e.stopPropagation();
+    // console.log("Fav List", favrouteItems);
+
+    if (token) {
+      if (!favroute) {
+        // console.log(!favroute);
+        addToFavrouteLogic(id);
+        favListNotification();
+        setFavroute(true);
+      } else {
+        setFavroute(false);
+      }
     } else {
-      setFavroute(false);
+      favListNotificationError();
     }
   };
 
@@ -57,34 +74,34 @@ const ProductItem = (props: productItemProps) => {
     });
   }, []);
 
+  const goToDetailsPage = () => {
+    navigate(`/products/${item.id}`)
+  }
   return (
     <>
-      <div className="item-container">
+      <div className="item-container" onClick={goToDetailsPage} onMouseOver={(e) => handleMouseOver(e, true)} onMouseLeave={(e) => handleMouseOver(e, false)}>
         <div className="item-img">
-          <img src={item.thumbnail} alt={item.title} />
-          <button className="heartBtn" onClick={() => handleFavroute(item.id)}>
-            {favroute ? (
-              <AiFillHeart className="heart-icon" />
-            ) : (
-              <AiOutlineHeart className="heart-icon" />
-            )}
-          </button>
+          <img src={item.image} alt={item.title} />
+          {
+            showHeart && <button className="heartBtn" onClick={(e) => handleFavroute(item.id, e)}>
+              {favroute ? (
+                <AiFillHeart className="heart-icon" />
+              ) : (
+                <AiOutlineHeart className="heart-icon" />
+              )}
+            </button>
+          }
         </div>
-        <div className="item-price">
+        <div className="item-title">
+          <h3 style={{ width: "bold", color: "#8b6238" }}>{item.category}</h3>
           <h3>{item.title}</h3>
-          <h4>{item.price} $</h4>
+          <h4>$ {item.price}</h4>
         </div>
-        <div className="item-reating">
-          <span>
-            <FcRating className="ratingIcon" />
-          </span>
-          <span> {item.rating}</span>
+        <div className="item-desc">
           <div>Lorem ipsum dolor sit</div>
         </div>
         <div className="btn-section">
-          <Link to={`/products/${id}`}><BsEye /></Link>
-
-          <button onClick={() => addToCartLogic(id)}>
+          <button onClick={(e) => addToCartLogic(id, e)}>
             Add to cart <BsFillCartFill />
           </button>
         </div>

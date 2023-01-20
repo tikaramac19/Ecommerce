@@ -42,17 +42,16 @@ const CartPage = () => {
       return total += item[curr].price
 
       // console.log(total, curr);
-
     }, 0)
     dispatch(setTotalPrice(initialTotal));
-  }, [])
+  }, [cartItems])
 
   return (
     <>
       <MiniNav />
       <div className="cart-container">
         <div className="leftContainer">
-          <div className="list-headers">
+          {/* <div className="list-headers">
             <ul>
               <li>PRODUCT</li>
               <li>PRICE</li>
@@ -61,21 +60,33 @@ const CartPage = () => {
               <li>REMOVE</li>
             </ul>
             <hr />
-          </div>
+          </div> */}
+          <table className="list-headers">
+            <tr>
+              <th>PRODUCT</th>
+              <th>PRICE</th>
+              <th>QUANTITY</th>
+              <th className="hide-th">SUB TOTAL</th>
+              <th>REMOVE</th>
+            </tr>
+            <hr />
+          </table>
           <div>
-            <div className="carts">
-              {cartItems.map((item: itemInterface, id: number) => {
-                // console.log(item);
-                return (
-                  <CartItem
-                    key={id}
-                    item={item}
-                    deleteCartItem={deleteCartItem}
-                    id={id}
-                  />
-                );
-              })}
-            </div>
+            <table>
+              <div className="carts">
+                {cartItems.map((item: itemInterface, id: number) => {
+                  // console.log(item);
+                  return (
+                    <CartItem
+                      key={id}
+                      item={item}
+                      deleteCartItem={deleteCartItem}
+                      id={id}
+                    />
+                  );
+                })}
+              </div>
+            </table>
             <div className="coupen-option">
               <form>
                 <input type="text" placeholder="Coupon Code" />

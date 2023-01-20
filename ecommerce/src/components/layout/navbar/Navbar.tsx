@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./_navbar.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -13,7 +13,8 @@ const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [search, setSearch] = useState<string | null>('');
   const { firstName, token } = useSelector((state: any) => state.authSlice);
-
+  const { cartItems } = useSelector((state: any) => state.productSlice);
+  const firstRender = useRef(false);
   const handleToggle = () => {
     setToggle((prev) => !prev);
   };
@@ -31,18 +32,16 @@ const Navbar = () => {
     setSearch(e.target.value);
 
   }
-  console.log(search)
 
   useEffect(() => {
 
-    let getSearchProduct = async () => {
-      const response = await axios.get(`https://dummyjson.com/products/search?q=${search}`);
-      const result = response.data;
+    // let getSearchProduct = async () => {
+    //   const response = await axios.get(`https://fakestoreapi.com/products/${search}`);
+    //   const result = response.data;
 
-      dispatch(addProducts(result.products));
-    }
-
-    getSearchProduct();
+    //   dispatch(addProducts(result.products));
+    // }
+    // getSearchProduct();
 
   }, [search]);
   return (
@@ -94,14 +93,14 @@ const Navbar = () => {
 
             <div className="icons-container">
               <div className="icons fav-icon">
-                <Link to={"/favroutes"} title='Favroute'>
+                <Link to={"/favorites"} title='Favorites'>
                   <AiOutlineHeart className="icon" />
                 </Link>
               </div>
               <div className="icons cart-icon">
                 <Link to={"/cart"} title="Cart">
                   <BsCart className="icon" />
-                  {/* <span className="abs-cart-count">{cartItems.length}</span> */}
+                  <span className="abs-cart-count">({cartItems.length})</span>
                 </Link>
               </div>
               {token ? <div>
@@ -113,8 +112,8 @@ const Navbar = () => {
           <div className={!toggle ? "list-items-hide" : "list-items-show"}>
             <div className="title-cont">
               <h1>Daraz</h1>
-              <div className="cancle-btn">
-                <RxCross1 onClick={handleToggle} className="cancle-icons" />
+              <div className="cancle-btn" onClick={handleToggle}>
+                <RxCross1 className="cancle-icons" />
               </div>
             </div>
 
@@ -126,10 +125,16 @@ const Navbar = () => {
                 <Link to={"/products"}>Products</Link>
               </li>
               <li>
-                <Link to={"/cart"}> Kids </Link>
+                <Link to={"/kids"}> Kids </Link>
               </li>
               <li>
                 <Link to={"/sale"}> On Sale </Link>
+              </li>
+              <li>
+                <Link to={"/cart"}> Cart </Link>
+              </li>
+              <li>
+                <Link to={"/favorites"}> Favorites </Link>
               </li>
               {
                 token == "" && <><li>

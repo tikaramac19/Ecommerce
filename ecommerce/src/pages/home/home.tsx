@@ -10,7 +10,7 @@ const HomePage = () => {
     { url: 'https://images.pexels.com/photos/5650050/pexels-photo-5650050.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', title: 'beutiful girl' },
     { url: 'https://images.pexels.com/photos/7195060/pexels-photo-7195060.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', title: 'beutiful girl' },
     { url: 'https://images.pexels.com/photos/7817699/pexels-photo-7817699.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', title: 'beutiful girl' },
-
+    
   ]
 
   return (

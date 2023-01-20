@@ -9,7 +9,7 @@ import { Favroute } from "../pages/favroute/Favroute";
 import DetailsPage from "../pages/details.page/details.page"
 import ProtectedRoutes from "../components/layout/protected_route/Protected";
 import { ErrorPage } from "../common/errorPage/error.common";
-import PublicRoutes from "../components/layout/protected_route/publicRoutes"
+import PublicRoutes from "../components/layout/protected_route/publicRoutes";
 export const router = createBrowserRouter([
   {
     element: (
@@ -23,6 +23,30 @@ export const router = createBrowserRouter([
       {
         path: "/auth/register",
         element: <Register />,
+      },
+      {
+        path: "/products",
+        element: <Products />,
+      },
+      {
+        path: '/products/:id',
+        element: <DetailsPage />
+      }
+      ,
+      {
+        path: "/error",
+        element: <ErrorPage />,
+      }, {
+        path: '/kids',
+        element: <ErrorPage />
+      }, {
+        path: '/sale',
+        element: <ErrorPage />
+      }
+      ,
+      {
+        path: "/",
+        element: <Home />,
       }
     ]
   },
@@ -36,28 +60,12 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/favroutes",
+        path: "/favorites",
         element: (
           <Favroute />
         ),
       },
-      {
-        path: "/products",
-        element: <Products />,
-      }
-      ,
-      {
-        path: '/products/:id',
-        element: <DetailsPage />
-      },
-      {
-        path: "*",
-        element: <ErrorPage />,
-      },
+
     ]
   }
 ]);

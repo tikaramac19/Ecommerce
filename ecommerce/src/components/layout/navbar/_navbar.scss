@@ -173,6 +173,9 @@ $media-mobile-sm: "only screen and (max-width : 480px)";
           color: #8f653a;
           border-left: 1px solid #8f653a;
         }
+        @media #{$media-mobile} {
+          display: none;
+        }
       }
       .icons-container {
         display: flex;
@@ -182,24 +185,21 @@ $media-mobile-sm: "only screen and (max-width : 480px)";
           padding: 0rem 0.5rem;
           font-size: 1.6rem;
           color: #333;
+
           a {
             text-decoration: none;
             color: rgb(30, 30, 30);
-
+            display: flex;
             .icon {
               &:hover {
                 color: #8f653a;
                 transition: all 0.3s ease;
               }
             }
-          }
-
-          .cart-icon {
-            a {
-              position: relative;
-              .abs-cart-count {
-                position: absolute;
-              }
+            .abs-cart-count {
+              // position: absolute;
+              color: #7f56da;
+              font-size: 0.9rem;
             }
           }
 
@@ -214,6 +214,10 @@ $media-mobile-sm: "only screen and (max-width : 480px)";
             top: 0%;
             border-bottom-right-radius: 0.3rem;
             border-bottom-left-radius: 0.3rem;
+          }
+
+          @media #{$media-mobile} {
+            display: none;
           }
         }
         .logout {

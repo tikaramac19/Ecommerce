@@ -1,3 +1,9 @@
+// breakpoints for different viewport devices
+$media-desktop: "only screen and (max-width : 1024px)";
+$media-tablet: "only screen and (max-width : 768px)";
+$media-mobile: "only screen and (max-width : 600px)";
+$media-mobile-sm: "only screen and (max-width : 480px)";
+
 .cart-container {
   display: flex;
   width: 80%;
@@ -5,25 +11,29 @@
   justify-content: space-between;
   padding-top: 2rem;
   margin: 0rem auto;
+  flex-wrap: wrap;
   .leftContainer {
     width: 70%;
     .list-headers {
       height: 50px;
-
-      ul {
+      tr {
+        width: 58vw;
         display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-around;
+        justify-content: space-between;
         margin-bottom: 1rem;
-        li {
-          list-style: none;
+        th {
+          // margin: 0rem 1.7rem;
+          width: 100%;
           font-size: 0.8rem;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-weight: bold;
-          color: #333;
+        }
+        .hide-th {
+          @media #{$media-mobile-sm} {
+            display: none;
+          }
+        }
+
+        @media #{$media-tablet} {
+          width: 80vw;
         }
       }
     }
@@ -40,6 +50,7 @@
     .coupen-option {
       margin-top: 4rem;
       form {
+        display: flex;
         margin-left: 0.5rem;
         input {
           height: 40px;
@@ -62,6 +73,10 @@
 
           &:hover {
             background-color: #614223;
+          }
+
+          @media #{$media-mobile-sm} {
+            font-size: 0.7rem;
           }
         }
       }
@@ -135,5 +150,15 @@
         }
       }
     }
+
+    @media #{$media-tablet} {
+      margin-top: 1rem;
+      width: 100%;
+      margin: 1rem auto;
+    }
+  }
+
+  @media #{$media-tablet} {
+    flex-direction: column;
   }
 }

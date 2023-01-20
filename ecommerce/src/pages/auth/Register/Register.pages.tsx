@@ -136,6 +136,7 @@ const RegisterPage = () => {
                               name="fullname"
                               values={values.fullname}
                               onChange={handleChange}
+
                             />
                             {errors.fullname && touched.fullname ? (
                               <h3 className="error-msg">{errors.fullname}</h3>
@@ -150,6 +151,7 @@ const RegisterPage = () => {
                               name="username"
                               values={values.username}
                               onChange={handleChange}
+                              className="nameField"
                             />
                             {errors.username && touched.username ? (
                               <h3 className="error-msg">{errors.username}</h3>

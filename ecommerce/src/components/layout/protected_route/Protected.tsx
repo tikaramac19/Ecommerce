@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Navigate, Outlet, Route } from "react-router-dom";
+import { Navigate, Outlet, Route, useLocation } from "react-router-dom";
 
 interface protectedRouteProps {
   children?: React.ReactNode;
@@ -7,6 +7,10 @@ interface protectedRouteProps {
 
 const ProtectedRoutes = ({ children }: protectedRouteProps) => {
   const { token } = useSelector((state: any) => state.authSlice);
+  const { pathname } = useLocation()
+
+
+  // console.log('protected: ', pathname)
   // console.log(token);
   return token ? <Outlet /> : <Navigate to={"/auth/login"} />;
 };

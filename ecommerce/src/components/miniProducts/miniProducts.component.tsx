@@ -9,20 +9,15 @@ import { IoMdArrowForward } from "react-icons/io"
 import "./_miniProductsCont.scss";
 const MiniProductsContainer = () => {
     const { miniProducts } = useSelector((state: any) => state.productSlice);
-    // console.log(miniProducts);
+
     const dispatch = useDispatch();
     useEffect(() => {
-
         const fetchingData = async () => {
-            const response = await axios.get('https://dummyjson.com/products?limit=4&skip=40');
-
+            const response = await axios.get('https://fakestoreapi.com/products?limit=4');
             const result = await response.data;
-
-            // console.log(result.products);
-            dispatch(addMiniProducts(result.products));
-
+            // console.log(result);
+            dispatch(addMiniProducts(result));
         }
-
         fetchingData();
     }, [])
 

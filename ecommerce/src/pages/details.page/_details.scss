@@ -1,3 +1,9 @@
+// breakpoints for different viewport devices
+$media-desktop: "only screen and (max-width : 1024px)";
+$media-tablet: "only screen and (max-width : 768px)";
+$media-mobile: "only screen and (max-width : 600px)";
+$media-mobile-sm: "only screen and (max-width : 480px)";
+
 .details-wrapper {
   display: flex;
   flex-direction: column;
@@ -68,6 +74,10 @@
           margin-top: 1rem;
           font-size: 0.8rem;
           color: gray;
+        }
+
+        @media #{$media-mobile-sm} {
+          padding: 2rem 0rem;
         }
       }
 
@@ -151,6 +161,7 @@
             button {
               border: 1px solid;
               outline: none;
+              border: none;
               background: none;
               font-size: 0.8rem;
               padding: 0.7rem 0.9rem;
@@ -159,7 +170,10 @@
               cursor: pointer;
               color: white;
               font-weight: bold;
-              background: #9a8f83;
+              background: #a2682d;
+              &:hover {
+                background: #8b6238;
+              }
             }
           }
         }
@@ -176,6 +190,13 @@
             border-right: 1px solid gray;
             padding: 1rem 1rem;
             font-weight: bold;
+
+            @media #{$media-mobile-sm} {
+              padding: 0rem;
+              border: none;
+
+              justify-content: flex-start;
+            }
           }
           .share-options {
             padding: 1rem;
@@ -192,6 +213,10 @@
               border-radius: 0.2rem;
               text-align: center;
               cursor: pointer;
+              @media #{$media-mobile-sm} {
+                padding: 0.2rem 0.4rem;
+                font-size: 0.9rem;
+              }
             }
             .icon1-bg {
               background-color: rgb(252, 167, 167);
@@ -206,8 +231,22 @@
               color: blue;
             }
           }
+
+          @media #{$media-mobile-sm} {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+          }
         }
       }
+      @media #{$media-mobile-sm} {
+        margin-left: 0rem;
+      }
+    }
+
+    @media #{$media-mobile-sm} {
+      padding: 0 2rem;
+      margin-top: 2rem;
     }
   }
 

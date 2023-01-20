@@ -1,3 +1,9 @@
+// breakpoints for different viewport devices
+$media-desktop: "only screen and (max-width : 1024px)";
+$media-tablet: "only screen and (max-width : 768px)";
+$media-mobile: "only screen and (max-width : 600px)";
+$media-mobile-sm: "only screen and (max-width : 480px)";
+
 .products-container {
   width: 100%;
   height: auto;
@@ -26,11 +32,15 @@
     .forward-icon {
       font-size: 2rem;
       color: gray;
+      display: flex;
       align-items: center;
       text-align: center;
+      justify-content: center;
     }
     .num-pages {
       display: flex;
+      align-items: center;
+
       span {
         margin: 0rem 0.7rem;
         button {
@@ -40,10 +50,20 @@
           border: none;
           border-radius: 0.2rem;
         }
+
+        @media #{$media-mobile-sm} {
+          margin: 0rem 0.2rem;
+        }
       }
       .span-active {
         background: #333;
         color: white;
+      }
+    }
+
+    @media #{$media-mobile-sm} {
+      .num-pages {
+        margin: 0rem 1rem;
       }
     }
   }

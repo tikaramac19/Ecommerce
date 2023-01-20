@@ -1,5 +1,5 @@
 .favItem-container {
-  height: 325px;
+  height: auto;
   width: 300px;
   display: flex;
   flex-direction: column;
@@ -8,6 +8,7 @@
   margin-right: 1rem;
   border-radius: 0.3rem;
   position: relative;
+
   .cart-img {
     img {
       height: 200px;
@@ -28,7 +29,8 @@
   }
   .cart-price {
     h3 {
-      font-size: 1rem;
+      margin: 0.4rem 0rem;
+      font-size: 0.8rem;
       color: rgb(37, 37, 37);
     }
     h4 {
@@ -47,6 +49,71 @@
       color: white;
       font-weight: bold;
       background-color: #8b6238;
+    }
+  }
+
+  .dialog-container-fav {
+    // transform: ;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    // justify-content: flex-start;
+    height: 150px;
+    width: 100%;
+    top: 40%;
+    left: 40%;
+    background: #fff;
+    z-index: 999;
+    border-radius: 0.3rem;
+    border: 1px solid #835629;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+      rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    // padding: 16px;
+    .title {
+      float: left;
+      font-size: 1.2rem;
+      margin-top: 0.3rem;
+      color: rgb(93, 93, 93);
+      font-weight: bold;
+    }
+    .sub-title {
+      margin-top: 0.6rem;
+      font-size: 0.8rem;
+      color: #333;
+      font-weight: bold;
+    }
+    .btns {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: flex-end;
+      margin-right: 0.3rem;
+      .btn {
+        height: 34px;
+        padding: 0.2rem 1rem;
+        cursor: pointer;
+        margin: 0rem 0.3rem;
+        outline: none;
+        border: 1px solid #835629;
+        border-radius: 0.2rem;
+        color: white;
+        font-weight: bold;
+      }
+      .btn-one {
+        background-color: #fff;
+        color: #333;
+
+        &:hover {
+          background-color: rgb(224, 224, 224);
+        }
+      }
+      .btn-two {
+        background-color: #835629;
+        color: #fff;
+
+        &:hover {
+          background-color: #74491d;
+        }
+      }
     }
   }
 }

@@ -35,6 +35,7 @@ const productSlice = createSlice({
   initialState,
   reducers: {
     addProducts: (state, actions) => {
+      // console.log(actions.payload);
       state.products = actions.payload;
     },
     addMiniProducts: (state, actions) => {

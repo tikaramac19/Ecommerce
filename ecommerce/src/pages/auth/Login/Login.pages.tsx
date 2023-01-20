@@ -48,7 +48,6 @@ const LoginPage = () => {
     <>
       <MiniNav />
       <div className="login-container">
-
         <div className="login-wrapper">
           <div className="login-left">
             <div className="login-info">
@@ -85,7 +84,7 @@ const LoginPage = () => {
                     authSuccessNotification();
                     setTimeout(() => {
                       navigate("/products");
-                    }, 2000);
+                    }, 1000);
                   } else {
                     authErrorNotification();
                   }

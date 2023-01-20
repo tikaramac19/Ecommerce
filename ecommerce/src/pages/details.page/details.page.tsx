@@ -12,6 +12,7 @@ import { RxAvatar } from 'react-icons/rx';
 import { AiFillStar } from 'react-icons/ai'
 import { itemInterface } from "../../@types/globleTypes/itemTypes";
 import { toast } from "react-hot-toast";
+import axios from "axios";
 const DetailsPage = () => {
     const ColorValues = [
         {
@@ -44,10 +45,10 @@ const DetailsPage = () => {
     const [isRevActive, setRevActive] = useState(false);
     const [sizeId, setSizeId] = useState<number | undefined>();
     const [selectedItem, setSelectedItem] = useState<itemInterface | null>(null);
-    const { products } = useSelector((state: any) => state.productSlice)
     // console.log(selectedItem);
     const dispatch = useDispatch();
     const { id } = useParams();
+    const { token } = useSelector((state: any) => state.authSlice);
 
     const addToCartNoti = () => {
         toast.success('product added to cart !', {
@@ -55,14 +56,15 @@ const DetailsPage = () => {
             position: 'top-right'
         })
     }
-    // console.log(id)
-    useEffect(() => {
-        const filteredItem = products.find((item: itemInterface, itemId: number) => {
-            return itemId === parseInt(id as string);
+    const addToCartNotiErr = () => {
+        toast.error('you need to login first !', {
+            duration: 2000,
+            position: 'top-right'
         })
-        // console.log(filteredItem)
-        setSelectedItem(filteredItem);
-    }, [])
+    }
+    // console.log(id)
+
+    // console.log(selectedItem)
 
     const handleActive = (tempId: number) => {
         setActiveId(tempId)
@@ -72,9 +74,7 @@ const DetailsPage = () => {
     }
 
     const handleIncrease = () => {
-
         setCount(count + 1);
-
     }
     const handleDecrease = () => {
         if (count === 0) {
@@ -85,8 +85,12 @@ const DetailsPage = () => {
     }
     const addToCartHandle = () => {
         // console.log(selectedItem)
-        dispatch(addToCart(selectedItem))
-        addToCartNoti();
+        if (token) {
+            dispatch(addToCart(selectedItem))
+            addToCartNoti();
+        } else {
+            addToCartNotiErr();
+        }
     }
 
     const handleTabs = (values: 'des' | 'rev') => {
@@ -97,27 +101,37 @@ const DetailsPage = () => {
             setRevActive(true);
             setIsDesActive(false)
         }
-
     }
+
+    useEffect(() => {
+        const fetchSingleProduct = async () => {
+            const response = await axios.get(`https://fakestoreapi.com/products/${id}`);
+            const result = response.data;
+            // console.log(result)
+            setSelectedItem(result);
+        }
+        fetchSingleProduct();
+        // console.log(filteredItem)
+    }, [])
 
     return (<>
         <MiniNav />
         <div className="details-wrapper">
             <div className="details-container">
                 <div className="img-container">
-                    <img src={selectedItem?.thumbnail} alt={selectedItem?.brand} />
+                    <img src={selectedItem?.image} alt={selectedItem?.brand} />
                 </div>
                 <div className="details">
                     <div className="details-header">
                         <h2>{selectedItem?.title}</h2>
                         <p className="category">{(selectedItem?.category)}</p>
                         <div className="rating">
-                            <FcRating /> {selectedItem?.rating}
+                            <FcRating /> {selectedItem?.rating.rate}
                         </div>
                         <div className="price">
                             <h3>${selectedItem?.price}</h3>
                             <span className="stock">
-                                In Stock {selectedItem?.stock}
+                                In Stock {selectedItem?.rating.count}
                             </span>
                         </div>
                         <div className="description">

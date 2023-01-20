@@ -25,7 +25,7 @@ const Footer = () => {
                     <li><Link to={"/"}> <MdOutlineNavigateNext /> Home</Link></li>
                     <li><Link to={"/products"}> <MdOutlineNavigateNext /> Products</Link></li>
                     <li><Link to={"/cart"}> <MdOutlineNavigateNext /> MyCart</Link></li>
-                    <li><Link to={"/favroute"}> <MdOutlineNavigateNext /> Favroutes</Link></li>
+                    <li><Link to={"/favorites"}> <MdOutlineNavigateNext /> Favorites</Link></li>
                     <li><Link to={"/kids"}> <MdOutlineNavigateNext /> Kids</Link></li>
                     <li><Link to={"/sales"}> <MdOutlineNavigateNext /> Sales</Link></li>
 

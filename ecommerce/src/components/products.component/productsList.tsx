@@ -10,9 +10,9 @@ import { itemInterface } from "../../@types/globleTypes/itemTypes";
 import toast from "react-hot-toast";
 
 const ProductsList = () => {
-  const {productSlice: {products}} = useSelector((state: any) => state);
-  
-  const [quantity, setQuantity] = useState(1);
+  const { products } = useSelector((state: any) => state.productSlice);
+  const { token } = useSelector((state: any) => state.authSlice);
+  // console.log(products);
   const dispatch = useDispatch();
 
   const notify = () => {
@@ -21,19 +21,28 @@ const ProductsList = () => {
       position: "top-right",
     });
   };
-
-  const addToCartLogic = (tempId: number) => {
+  const notifyErr = () => {
+    toast.error("You need to login first!", {
+      duration: 1500,
+      position: "top-right",
+    });
+  };
+  const addToCartLogic = (tempId: number, e: any) => {
+    e.stopPropagation();
     const checkItem = products.filter((item: itemInterface, id: number) => {
       if (tempId === id) {
-        notify();
         return item;
       }
     });
 
-    if (checkItem && checkItem.length > 0) {
-      dispatch(addToCart(checkItem[0]));
+    if (token) {
+      if (checkItem && checkItem.length > 0) {
+        dispatch(addToCart(checkItem[0]));
+        notify();
+      }
+    } else {
+      notifyErr();
     }
-
     // console.log("product added");
   };
 

@@ -2,10 +2,10 @@
   display: flex;
   height: auto;
   width: 100%;
-
+  margin: 0rem auto;
   .item-wrapper {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    margin: 0rem 5rem;
   }
 }

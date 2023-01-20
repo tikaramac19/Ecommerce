@@ -12,12 +12,13 @@ $media-mobile-sm: "only screen and (max-width : 480px)";
   padding: 4rem 3rem;
 
   .login-wrapper {
-    height: 100vh;
+    // height: 100vh;
     width: 100%;
     // border: 1px solid;
     border-radius: 1rem;
     display: flex;
     .login-left {
+      height: auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -38,6 +39,10 @@ $media-mobile-sm: "only screen and (max-width : 480px)";
           margin-top: 0.4rem;
           font-size: 0.7rem;
           color: gray;
+        }
+
+        @media #{$media-mobile-sm} {
+          width: 80%;
         }
       }
       .form-wrapper {
@@ -154,6 +159,14 @@ $media-mobile-sm: "only screen and (max-width : 480px)";
             }
           }
         }
+
+        @media #{$media-mobile-sm} {
+          width: 80%;
+        }
+      }
+
+      @media #{$media-mobile-sm} {
+        height: 70vh;
       }
     }
     .login-right {
@@ -184,6 +197,17 @@ $media-mobile-sm: "only screen and (max-width : 480px)";
       .login-right {
         display: none;
       }
+    }
+  }
+
+  @media #{$media-mobile-sm} {
+    align-items: center;
+    padding: 5rem 1rem;
+    min-height: 50vh;
+    margin: auto;
+    .form-wrapper {
+      width: 100%;
+      height: 50vh;
     }
   }
 }

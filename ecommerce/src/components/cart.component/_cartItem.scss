@@ -1,7 +1,13 @@
+// breakpoints for different viewport devices
+$media-desktop: "only screen and (max-width : 1024px)";
+$media-tablet: "only screen and (max-width : 768px)";
+$media-mobile: "only screen and (max-width : 600px)";
+$media-mobile-sm: "only screen and (max-width : 480px)";
+
 .cartItem-container {
   display: flex;
   flex-direction: column;
-  padding: 1rem 2rem;
+  padding: 1rem;
   height: auto;
   width: 100%;
   // position: relative;
@@ -9,10 +15,18 @@
     display: flex;
     // align-items: center;
     justify-content: space-between;
+    tr {
+      width: 55vw;
+      display: flex;
+      justify-content: space-between;
+
+      @media #{$media-tablet} {
+        width: 75vw;
+      }
+    }
     .product-image {
       height: 50px;
       width: 80px;
-
       img {
         height: 100%;
         width: 100%;
@@ -32,6 +46,10 @@
     .subtotal {
       color: #333;
       font-weight: bold;
+
+      @media #{$media-mobile-sm} {
+        display: none;
+      }
     }
     .remove {
       button {
@@ -48,6 +66,10 @@
             border-radius: 0.2rem;
           }
         }
+      }
+
+      @media #{$media-mobile-sm} {
+        margin-left: -2rem;
       }
     }
   }
@@ -133,5 +155,14 @@
         }
       }
     }
+
+    @media #{$media-mobile-sm} {
+      left: 0%;
+      width: 80vw;
+    }
+  }
+
+  @media #{$media-tablet} {
+    padding: 1rem 0rem;
   }
 }

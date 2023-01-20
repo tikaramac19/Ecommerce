@@ -56,9 +56,13 @@ $media-mobile-sm: "only screen and (max-width : 480px)";
             text-decoration: none;
           }
         }
+
+        @media #{$media-mobile-sm} {
+          margin: 2rem 0rem;
+        }
       }
       .login-options {
-        width: 500px;
+        max-width: 500px;
         margin: auto;
         margin-top: 5rem;
         padding: 1rem;
@@ -136,7 +140,7 @@ $media-mobile-sm: "only screen and (max-width : 480px)";
         }
       }
       .form-wrapper {
-        width: 30rem;
+        max-width: 500px;
         margin: auto;
         padding: 1rem;
         display: flex;
@@ -157,12 +161,20 @@ $media-mobile-sm: "only screen and (max-width : 480px)";
 
             input {
               height: 32px;
-              width: 95%;
+              width: 100%;
               border-radius: 0.2rem;
               border: none;
               outline: none;
               padding: 0rem 0.3rem;
               background: #d8d8d8;
+            }
+
+            .nameField {
+              margin-left: 0.3rem;
+
+              @media #{$media-mobile-sm} {
+                margin-left: 0%;
+              }
             }
           }
 
@@ -195,6 +207,14 @@ $media-mobile-sm: "only screen and (max-width : 480px)";
             }
             input {
               margin-right: 1rem;
+              margin-top: 7px;
+            }
+
+            @media #{$media-mobile-sm} {
+              // align-items: center;
+              p {
+                font-size: 0.8rem;
+              }
             }
           }
 
@@ -232,6 +252,7 @@ $media-mobile-sm: "only screen and (max-width : 480px)";
     .link-to-login {
       width: 100%;
       text-align: center;
+      margin: 2rem auto;
     }
     .login-options {
       width: 100%;
@@ -246,7 +267,8 @@ $media-mobile-sm: "only screen and (max-width : 480px)";
 
     .form-wrapper {
       .form-container {
-        width: 400px;
+        overflow: hidden;
+        width: 98%;
         display: flex;
       }
     }

@@ -1,9 +1,11 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { CiSquareRemove } from "react-icons/ci"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./_cartItem.scss";
 import { itemInterface } from "../../@types/globleTypes/itemTypes";
 import { setIncreaseTotal, setDecreaseTotal } from "../../store/productSlice/productSlice";
+
+
 interface cartItemProps {
   item: itemInterface;
   id: number;
@@ -12,18 +14,11 @@ interface cartItemProps {
 
 const CartItem = (props: cartItemProps) => {
   const { item, deleteCartItem, id } = props;
-
+  // console.log(token)
   const [count, setCount] = useState<number>(1);
   const [subPrice, setSubPrice] = useState<number | undefined>(() => item.price);
   const [showDialog, setShowDialog] = useState<boolean>(false);
   const dispatch = useDispatch();
-
-  // const handleDeleteNotification = () => {
-  //   toast.success('item deleted from cart !!', {
-  //     position: 'top-right',
-  //     duration: 2000
-  //   })
-  // }
 
   const handlePriceChange = (change: 'inc' | 'dec', value: number) => {
     if (change === 'dec') {
@@ -52,25 +47,41 @@ const CartItem = (props: cartItemProps) => {
   return (
     <>
       <div className="cartItem-container">
-        <div className="product-list">
-          <div className="product-image">
-            <img src={item.thumbnail} alt={item.brand} />
-            <div className="brand-name">{item.title}</div>
-          </div>
-          <div className="price"> ${item.price}</div>
-          <div className="Quantity">
-            <div className="select-item">
-              <button onClick={() => handlePriceChange('dec', count)}>-</button>
-              <span>{count}</span>
-              <button onClick={() => handlePriceChange('inc', count)}>+</button>
-            </div>
-          </div>
-          <div className="subtotal">
-            <p> ${subPrice}</p>
-          </div>
-          <div className="remove">
-            <button onClick={() => deleteCartItem(id)}><CiSquareRemove className="deleteIcon" /></button>
-          </div>
+        <table className="product-list">
+          <tr>
+            <td>
+              <div className="product-image">
+                <img src={item.image} alt={item.brand} />
+                <div className="brand-name">{item.title}</div>
+              </div>
+            </td>
+            <td>
+              <div className="price"> ${item.price}</div>
+            </td>
+            <td>
+              <div className="Quantity">
+                <div className="select-item">
+                  <button onClick={() => handlePriceChange('dec', count)}>-</button>
+                  <span>{count}</span>
+                  <button onClick={() => handlePriceChange('inc', count)}>+</button>
+                </div>
+              </div>
+            </td>
+            <td className="hide-td">
+              <div className="subtotal">
+                <p> ${subPrice}</p>
+              </div>
+            </td>
+            <td>
+              <div className="remove">
+                <button onClick={() => deleteCartItem(id)}><CiSquareRemove className="deleteIcon" /></button>
+              </div>
+            </td>
+          </tr>
+
+        </table>
+        <div>
+
         </div>
 
         {

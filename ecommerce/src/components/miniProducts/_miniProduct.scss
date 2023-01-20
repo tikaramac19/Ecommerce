@@ -1,14 +1,22 @@
+// breakpoints for different viewport devices
+$media-desktop: "only screen and (max-width : 1024px)";
+$media-tablet: "only screen and (max-width : 768px)";
+$media-mobile: "only screen and (max-width : 600px)";
+$media-mobile-sm: "only screen and (max-width : 480px)";
+
 .product-item-container {
   display: flex;
   flex-direction: column;
   height: 400px;
   width: 250px;
+  overflow: hidden;
   padding: 0.6rem 0.5rem;
   background: #f2f2f2;
   //   justify-content: center;
   border-radius: 0.4rem;
   //   align-items: center;
   position: relative;
+  cursor: pointer;
   .img-cont {
     margin-top: 0.6rem;
     height: 70%;
@@ -18,18 +26,20 @@
     img {
       height: 100%;
       width: 90%;
+      object-fit: contain;
     }
   }
   .sample {
     margin: 1rem 0.8rem;
     .catagory {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       color: #8b6238;
     }
     .title {
-      font-size: 1rem;
+      font-size: 0.8rem;
+
       font-weight: bold;
-      color: #333;
+      color: rgb(78, 78, 78);
     }
     .price {
       font-size: 0.9rem;
@@ -42,11 +52,23 @@
   .abs-btns {
     position: absolute;
     top: 3px;
-    right: 1%;
-    transition: all 0.3s ease;
+    right: -20px;
+    transition: all 0.6s ease;
     .heart,
     .details {
       cursor: pointer;
+
+      &:hover {
+        color: #8b6238;
+        transition: all 0.3s ease;
+      }
     }
+  }
+
+  &:hover .abs-btns {
+    right: 2px;
+  }
+  @media #{$media-mobile-sm} {
+    width: 100%;
   }
 }

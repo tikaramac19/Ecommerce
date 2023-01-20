@@ -11,27 +11,24 @@ const ProductsPage = () => {
   // const { pageTitle } = useSelector((state: any) => state.productsSlice);
   // const product = useSelector((state: any) => state.productSlice);
 
-  // console.log(product ,"fg;kdfjg;kf");
-
-  // console.log(pageTitle)
-  let limit = 10;
-  const [page, setPage] = useState<number>(0)
-  const [total, setTotal] = useState<number>(1)
+  let limit = 9;
+  const [page, setPage] = useState<number>(0);
+  const [total, setTotal] = useState<number>(1);
   const dispatch = useDispatch();
 
   const fetchData = useCallback(async () => {
-    const response = await axios.get(`https://dummyjson.com/products?limit=${limit}&skip=${page * 10}`);
+    const response = await axios.get(`https://fakestoreapi.com/products?limit=${limit}&page=${page}`);
     const result = await response.data;
-    // console.log('response: ', result)
-    setTotal(result.total)
-    dispatch(addProducts(result.products));
+
+    setTotal(20);
+    dispatch(addProducts(result));
   }, [page]);
 
   // console.log(products);
   useEffect(() => {
     // console.log(userToken);
     fetchData();
-  }, [fetchData]);
+  }, [page]);
 
   return (
     <>
@@ -49,6 +46,7 @@ const ProductsPage = () => {
           </div>
           <div className="num-pages">
             {Array(Math.ceil(total / limit)).fill('').map((_, index) => {
+              // console.log(total, limit, index)
               return <span key={index} onClick={() => setPage(index)} ><button className={page === index ? 'span-active' : ''}>{index + 1}</button></span>
             })}
 
