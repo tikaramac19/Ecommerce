@@ -1,17 +1,16 @@
 import React from "react";
 import { useCounter } from "../../provider/Counter.provider";
 
-interface Icounter{
-    farwards:boolean
+interface Icounter {
+    farwards: boolean
 }
 
 
-const BackwardCounter = () =>{
-    const counter = useCounter<Icounter>(false);
+const BackwardCounter = () => {
+
     return <>
 
-        <h1>{counter}</h1>
-    
+
     </>
 }
 
